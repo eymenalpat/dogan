@@ -79,6 +79,7 @@
   .nav-tab[data-brand="kelebek"].active { background: var(--kelebek); }
   .nav-tab[data-brand="lovayatak"].active { background: var(--lovayatak); }
   .nav-tab[data-brand="dogtas"].active { background: var(--dogtas); color: #0F1923; }
+  .nav-tab[data-brand="rakipler"].active { background: #9B59B6; }
 
   /* LAYOUT */
   .app-body {
@@ -221,12 +222,40 @@
     top: -1px;
   }
 
+  /* ACTION BUTTONS */
+  .action-bar {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.15s;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .action-btn:hover { background: var(--content-bg); }
+  .action-btn.sheets { color: #34A853; border-color: #34A853; }
+  .action-btn.sheets:hover { background: #E8F5E9; }
+  .action-btn.csv { color: #566573; }
+  .action-btn.csv:hover { background: var(--content-bg); }
+
   /* TABLE */
   .table-wrap {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow);
     overflow: hidden;
+    overflow-x: auto;
   }
   .table-wrap table {
     width: 100%;
@@ -250,9 +279,9 @@
   }
   .table-wrap thead th:hover { background: #243342; }
   .table-wrap thead th .sort-icon { opacity: 0.4; margin-left: 4px; font-size: 10px; }
-  .table-wrap thead th.sorted-asc .sort-icon::after { content: ' ↑'; opacity: 1; }
-  .table-wrap thead th.sorted-desc .sort-icon::after { content: ' ↓'; opacity: 1; }
-  .table-wrap thead th .sort-icon::after { content: ' ↕'; }
+  .table-wrap thead th.sorted-asc .sort-icon::after { content: ' \2191'; opacity: 1; }
+  .table-wrap thead th.sorted-desc .sort-icon::after { content: ' \2193'; opacity: 1; }
+  .table-wrap thead th .sort-icon::after { content: ' \2195'; }
   .table-wrap tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
   .table-wrap tbody tr:last-child { border-bottom: none; }
   .table-wrap tbody tr:nth-child(even) { background: #FAFBFD; }
@@ -273,6 +302,7 @@
   .badge-lovayatak { background: #E3F2FD; color: var(--lovayatak); }
   .badge-dogtas { background: #E8F8F0; color: #1E8449; }
   .badge-genel { background: #EBF0F4; color: var(--genel); }
+  .badge-rakipler { background: #F4ECF7; color: #9B59B6; }
   .badge-kritik { background: #FDECEA; color: #C0392B; border: 1px solid #E74C3C; }
   .badge-cok-yuksek { background: #FEF5E7; color: #D35400; border: 1px solid #E67E22; }
   .badge-yuksek { background: #EBF5FB; color: #1A5276; border: 1px solid #3498DB; }
@@ -333,6 +363,42 @@
     font-weight: 500;
   }
 
+  /* ANALYSIS TEXT SECTIONS */
+  .analysis-sections { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .analysis-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .analysis-card-header {
+    padding: 12px 20px;
+    background: #1A252F;
+    color: rgba(255,255,255,0.9);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .analysis-card-header.kritik { background: #C0392B; }
+  .analysis-card-body {
+    padding: 16px 20px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+  .analysis-card-body ul { padding-left: 18px; }
+  .analysis-card-body li { margin-bottom: 4px; }
+  .analysis-card-body .kv-row {
+    display: flex;
+    gap: 12px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .analysis-card-body .kv-row:last-child { border-bottom: none; }
+  .analysis-card-body .kv-key { font-weight: 600; min-width: 160px; color: var(--text-secondary); }
+  .analysis-card-body .kv-val { color: var(--text-primary); flex: 1; }
+
   /* URL pill */
   .url-pill {
     display: inline-block;
@@ -346,6 +412,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    vertical-align: middle;
   }
 
   /* Number formatting */
@@ -362,6 +429,70 @@
   .dr-bar { height: 6px; border-radius: 3px; background: var(--border); flex: 1; max-width: 80px; overflow: hidden; }
   .dr-bar-fill { height: 100%; border-radius: 3px; }
 
+  /* Poz highlight */
+  .poz-top { color: #1E8449; font-weight: 700; }
+  .poz-mid { color: #D35400; font-weight: 600; }
+  .poz-low { color: var(--text-secondary); }
+
+  /* status chips */
+  .status-analiz { background: #EBF5FB; color: #1A5276; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
+  .status-rakip { background: #F2F3F4; color: #566573; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+
+  /* Loading */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 16px;
+    color: var(--text-secondary);
+  }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--genel);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Error */
+  .error-box {
+    background: #FDECEA;
+    border: 1px solid #E74C3C;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    color: #922B21;
+    font-size: 13px;
+  }
+  .error-box strong { display: block; margin-bottom: 6px; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1A252F;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    font-size: 13px;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-width: 380px;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
   /* Responsive */
   @media (max-width: 900px) {
     aside { width: 220px; }
@@ -375,7 +506,41 @@
     .sidebar-docs { padding: 10px 4px; }
     .sidebar-item { justify-content: center; padding: 12px; }
     .doc-icon { margin: 0; }
+    .action-bar { flex-direction: column; }
   }
+
+  /* COLUMN FILTERS */
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; padding: 12px 16px; background: #F8F9FA; border-radius: 8px; border: 1px solid var(--border); align-items: center; }
+  .filter-row .filter-label { font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; }
+  .filter-chip { position: relative; display: inline-flex; }
+  .filter-chip-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border);
+    background: white; cursor: pointer; font-size: 11px; font-weight: 600;
+    color: var(--text-secondary); transition: all 0.15s; font-family: inherit;
+    white-space: nowrap;
+  }
+  .filter-chip-btn:hover { border-color: #3498DB; color: #3498DB; }
+  .filter-chip-btn.has-filter { background: #EBF5FB; border-color: #3498DB; color: #2471A3; }
+  .filter-chip-btn .filter-count { background: #3498DB; color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; margin-left: 2px; }
+  .filter-dropdown {
+    position: absolute; top: 100%; left: 0; z-index: 999;
+    background: white; border: 1px solid var(--border); border-radius: 8px;
+    box-shadow: var(--shadow-md); min-width: 200px; max-height: 280px;
+    overflow-y: auto; padding: 8px 0; margin-top: 4px; display: none;
+  }
+  .filter-dropdown.show { display: block; }
+  .filter-dropdown .filter-search { width: calc(100% - 16px); margin: 0 8px 6px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px; font-family: inherit; outline: none; }
+  .filter-dropdown .filter-search:focus { border-color: #3498DB; }
+  .filter-dropdown label { display: flex; align-items: center; gap: 8px; padding: 5px 12px; font-size: 12px; cursor: pointer; transition: background 0.1s; }
+  .filter-dropdown label:hover { background: #F0F4F8; }
+  .filter-dropdown label input[type="checkbox"] { accent-color: #3498DB; }
+  .filter-actions { display: flex; gap: 6px; padding: 6px 8px; border-top: 1px solid var(--border); margin-top: 4px; }
+  .filter-actions button { flex: 1; padding: 5px 8px; border-radius: 4px; border: 1px solid var(--border); background: white; cursor: pointer; font-size: 11px; font-weight: 600; font-family: inherit; }
+  .filter-actions .apply-btn { background: #3498DB; color: white; border-color: #3498DB; }
+  .filter-actions .clear-btn { color: var(--text-secondary); }
+  .filter-reset-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid #E74C3C; background: #FDECEA; color: #C0392B; cursor: pointer; font-size: 11px; font-weight: 600; font-family: inherit; display: none; }
+  .filter-reset-btn.show { display: inline-flex; }
 
   /* Footer */
   footer {
@@ -387,15 +552,6 @@
     flex-shrink: 0;
     letter-spacing: 0.5px;
   }
-
-  /* Poz highlight */
-  .poz-top { color: #1E8449; font-weight: 700; }
-  .poz-mid { color: #D35400; font-weight: 600; }
-  .poz-low { color: var(--text-secondary); }
-
-  /* status chips in backlink table */
-  .status-analiz { background: #EBF5FB; color: #1A5276; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
-  .status-rakip { background: #F2F3F4; color: #566573; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -407,6 +563,7 @@
     <button class="nav-tab" data-brand="kelebek" onclick="switchBrand('kelebek')">Kelebek</button>
     <button class="nav-tab" data-brand="lovayatak" onclick="switchBrand('lovayatak')">Lovayatak</button>
     <button class="nav-tab" data-brand="dogtas" onclick="switchBrand('dogtas')">Dogtas</button>
+    <button class="nav-tab" data-brand="rakipler" onclick="switchBrand('rakipler')">Rakipler</button>
   </div>
 </nav>
 
@@ -417,97 +574,180 @@
 
 <footer>SEO Analiz Raporu | Subat 2026</footer>
 
+<div class="toast" id="toast"></div>
+
 <script>
 // =====================================================================
-// DATA
+// BRAND / DOCUMENT CONFIG
 // =====================================================================
-const DATA = {
-
+const BRANDS = {
   genel: {
-    label: 'Genel',
-    color: '#34495E',
+    label: 'Genel', color: '#34495E',
     kpis: [
-      { val: '3', lbl: 'Marka' },
-      { val: '24', lbl: 'Belge' },
-      { val: '782K+', lbl: 'Toplam Trafik' },
-      { val: '39.5K+', lbl: 'Toplam KW' }
+      {val:'3', lbl:'Marka'},
+      {val:'32', lbl:'Belge'},
+      {val:'782K+', lbl:'Toplam Trafik'},
+      {val:'39.5K+', lbl:'Toplam KW'}
     ],
     docs: [
-      { id: '01', name: 'Genel Metrikler', icon: '📊', type: 'metrics', render: render_01 },
-      { id: '11', name: 'Backlink Karsilastirma', icon: '🔗', type: 'backlink', render: render_11 },
-      { id: '15', name: 'Keyword Gap - Ortak Kelimeler', icon: '🔍', type: 'kw', render: render_15 },
-      { id: '16', name: 'Rakipler Arasi Gap Ozet', icon: '📈', type: 'gap', render: render_16 },
-      { id: '17', name: 'Kategori Sayfasi DR Karsilastirma', icon: '📋', type: 'cat', render: render_17 },
-      { id: '24', name: 'Strateji Onerileri', icon: '🎯', type: 'strategy', render: render_24 },
+      {id:'01', name:'Genel Metrikler', icon:'\uD83D\uDCCA', file:'01_genel_metrikler_karsilastirma.tsv'},
+      {id:'11', name:'Backlink Karsilastirma', icon:'\uD83D\uDD17', file:'11_backlink_karsilastirma.tsv'},
+      {id:'15', name:'Keyword Gap', icon:'\uD83D\uDD0D', file:'15_keyword_gap_ortak_kelimeler.tsv'},
+      {id:'16', name:'Rakipler Arasi Gap', icon:'\uD83D\uDCC8', file:'16_rakipler_arasi_gap_ozet.tsv'},
+      {id:'17', name:'Kategori Karsilastirma', icon:'\uD83D\uDCCB', file:'17_kategori_sayfasi_dr_karsilastirma.tsv'},
+      {id:'24', name:'Strateji Onerileri', icon:'\uD83C\uDFAF', file:'24_strateji_onerileri.tsv'},
+      {id:'31', name:'Tum KW Cluster', icon:'🔎', file:'31_tum_kwler_cluster.tsv'},
+      {id:'32', name:'Kategori Karsilastirma', icon:'📊', file:'32_kategori_bazli_karsilastirma.tsv'},
     ]
   },
-
   kelebek: {
-    label: 'kelebek.com',
-    color: '#E74C3C',
+    label: 'kelebek.com', color: '#E74C3C',
     kpis: [
-      { val: 'DR 36', lbl: 'Domain Rating' },
-      { val: '314K', lbl: 'Aylik Trafik' },
-      { val: '16.7K', lbl: 'Organik KW' },
-      { val: '2,024', lbl: 'Ref Domain' }
+      {val:'DR 36', lbl:'Domain Rating'},
+      {val:'314K', lbl:'Aylik Trafik'},
+      {val:'16.7K', lbl:'Organik KW'},
+      {val:'2,024', lbl:'Ref Domain'}
     ],
     docs: [
-      { id: '02', name: 'KW Arastirmasi', icon: '🔍', render: render_02 },
-      { id: '05', name: 'Rakip Arastirmasi', icon: '👥', render: render_05 },
-      { id: '08', name: 'Top Pages', icon: '📄', render: render_08 },
-      { id: '12', name: 'Referring Domains', icon: '🔗', render: render_12 },
-      { id: '18', name: 'Backlink Rakip Analizi', icon: '📈', render: render_18 },
-      { id: '21', name: 'Internal Link Analizi', icon: '🗺️', render: render_21 },
+      {id:'02', name:'KW Arastirmasi', icon:'\uD83D\uDD0D', file:'02_kw_arastirmasi_kelebek.tsv'},
+      {id:'05', name:'Rakip Arastirmasi', icon:'\uD83D\uDC65', file:'05_rakip_arastirmasi_kelebek.tsv'},
+      {id:'08', name:'Top Pages', icon:'\uD83D\uDCC4', file:'08_top_pages_kelebek.tsv'},
+      {id:'12', name:'Referring Domains', icon:'\uD83D\uDD17', file:'12_referring_domains_kelebek.tsv'},
+      {id:'18', name:'Backlink Rakip Analizi', icon:'\uD83D\uDCC8', file:'18_backlink_rakip_kelebek.tsv'},
+      {id:'21', name:'Internal Link Analizi', icon:'\uD83D\uDDFA\uFE0F', file:'21_internal_links_kelebek.tsv'},
+      {id:'25', name:'Detayli KW Analizi', icon:'🎯', file:'25_kw_detayli_kelebek.tsv'},
     ]
   },
-
   lovayatak: {
-    label: 'lovayatak.com',
-    color: '#3498DB',
+    label: 'lovayatak.com', color: '#3498DB',
     kpis: [
-      { val: 'DR 31', lbl: 'Domain Rating' },
-      { val: '49.5K', lbl: 'Aylik Trafik' },
-      { val: '4,655', lbl: 'Organik KW' },
-      { val: '231', lbl: 'Ref Domain' }
+      {val:'DR 31', lbl:'Domain Rating'},
+      {val:'49.5K', lbl:'Aylik Trafik'},
+      {val:'4,655', lbl:'Organik KW'},
+      {val:'231', lbl:'Ref Domain'}
     ],
     docs: [
-      { id: '03', name: 'KW Arastirmasi', icon: '🔍', render: render_03 },
-      { id: '06', name: 'Rakip Arastirmasi', icon: '👥', render: render_06 },
-      { id: '09', name: 'Top Pages', icon: '📄', render: render_09 },
-      { id: '13', name: 'Referring Domains', icon: '🔗', render: render_13 },
-      { id: '20', name: 'Backlink Rakip Analizi', icon: '📈', render: render_20 },
-      { id: '22', name: 'Internal Link Analizi', icon: '🗺️', render: render_22 },
+      {id:'03', name:'KW Arastirmasi', icon:'\uD83D\uDD0D', file:'03_kw_arastirmasi_lovayatak.tsv'},
+      {id:'06', name:'Rakip Arastirmasi', icon:'\uD83D\uDC65', file:'06_rakip_arastirmasi_lovayatak.tsv'},
+      {id:'09', name:'Top Pages', icon:'\uD83D\uDCC4', file:'09_top_pages_lovayatak.tsv'},
+      {id:'13', name:'Referring Domains', icon:'\uD83D\uDD17', file:'13_referring_domains_lovayatak.tsv'},
+      {id:'20', name:'Backlink Rakip Analizi', icon:'\uD83D\uDCC8', file:'20_backlink_rakip_lovayatak.tsv'},
+      {id:'22', name:'Internal Link Analizi', icon:'\uD83D\uDDFA\uFE0F', file:'22_internal_links_lovayatak.tsv'},
+      {id:'27', name:'Detayli KW Analizi', icon:'🎯', file:'27_kw_detayli_lovayatak.tsv'},
     ]
   },
-
   dogtas: {
-    label: 'dogtas.com',
-    color: '#2ECC71',
+    label: 'dogtas.com', color: '#2ECC71',
     kpis: [
-      { val: 'DR 46', lbl: 'Domain Rating' },
-      { val: '410K', lbl: 'Aylik Trafik' },
-      { val: '18.1K', lbl: 'Organik KW' },
-      { val: '2,641', lbl: 'Ref Domain' }
+      {val:'DR 46', lbl:'Domain Rating'},
+      {val:'410K', lbl:'Aylik Trafik'},
+      {val:'18.1K', lbl:'Organik KW'},
+      {val:'2,641', lbl:'Ref Domain'}
     ],
     docs: [
-      { id: '04', name: 'KW Arastirmasi', icon: '🔍', render: render_04 },
-      { id: '07', name: 'Rakip Arastirmasi', icon: '👥', render: render_07 },
-      { id: '10', name: 'Top Pages', icon: '📄', render: render_10 },
-      { id: '14', name: 'Referring Domains', icon: '🔗', render: render_14 },
-      { id: '19', name: 'Backlink Rakip Analizi', icon: '📈', render: render_19 },
-      { id: '23', name: 'Internal Link Analizi', icon: '🗺️', render: render_23 },
+      {id:'04', name:'KW Arastirmasi', icon:'\uD83D\uDD0D', file:'04_kw_arastirmasi_dogtas.tsv'},
+      {id:'07', name:'Rakip Arastirmasi', icon:'\uD83D\uDC65', file:'07_rakip_arastirmasi_dogtas.tsv'},
+      {id:'10', name:'Top Pages', icon:'\uD83D\uDCC4', file:'10_top_pages_dogtas.tsv'},
+      {id:'14', name:'Referring Domains', icon:'\uD83D\uDD17', file:'14_referring_domains_dogtas.tsv'},
+      {id:'19', name:'Backlink Rakip Analizi', icon:'\uD83D\uDCC8', file:'19_backlink_rakip_dogtas.tsv'},
+      {id:'23', name:'Internal Link Analizi', icon:'\uD83D\uDDFA\uFE0F', file:'23_internal_links_dogtas.tsv'},
+      {id:'26', name:'Detayli KW Analizi', icon:'🎯', file:'26_kw_detayli_dogtas.tsv'},
+    ]
+  },
+  rakipler: {
+    label: 'Rakipler', color: '#9B59B6',
+    kpis: [
+      {val:'3', lbl:'Rakip'},
+      {val:'Istikbal', lbl:'#1 Rakip'},
+      {val:'Bellona', lbl:'#2 Rakip'},
+      {val:'Yatas', lbl:'#3 Rakip'}
+    ],
+    docs: [
+      {id:'28', name:'Istikbal KW', icon:'🏢', file:'28_rakip_kw_istikbal.tsv'},
+      {id:'29', name:'Bellona KW', icon:'🏢', file:'29_rakip_kw_bellona.tsv'},
+      {id:'30', name:'Yatas KW', icon:'🏢', file:'30_rakip_kw_yatas.tsv'},
     ]
   }
 };
 
 // =====================================================================
-// TABLE HELPERS
+// FETCH + PARSE
+// =====================================================================
+const cache = new Map();
+
+async function loadDoc(filename) {
+  if (cache.has(filename)) return cache.get(filename);
+  const resp = await fetch('./seo-analiz/' + filename);
+  if (!resp.ok) throw new Error('HTTP ' + resp.status + ' - ' + filename);
+  const text = await resp.text();
+  const parsed = parseTSV(text, filename);
+  cache.set(filename, { raw: text, parsed });
+  return cache.get(filename);
+}
+
+function parseTSV(text, filename) {
+  // Split into raw lines (keep empty lines as markers)
+  const allLines = text.split('\n');
+
+  // Strip trailing empty lines
+  let lastNonEmpty = allLines.length - 1;
+  while (lastNonEmpty >= 0 && allLines[lastNonEmpty].trim() === '') lastNonEmpty--;
+  const lines = allLines.slice(0, lastNonEmpty + 1);
+
+  if (lines.length === 0) return { headers: [], rows: [], textContent: '' };
+
+  // Determine header tab count
+  const headerTabs = (lines[0].match(/\t/g) || []).length;
+
+  let tableLines = [];
+  let textLines = [];
+  let inTable = true;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (inTable) {
+      // Empty line signals end of table section
+      if (line.trim() === '') {
+        inTable = false;
+        continue;
+      }
+      const tabCount = (line.match(/\t/g) || []).length;
+      // Accept lines with similar tab density (allow -1 tolerance)
+      if (tabCount >= headerTabs - 1) {
+        tableLines.push(line);
+      } else {
+        inTable = false;
+        textLines.push(line);
+      }
+    } else {
+      textLines.push(line);
+    }
+  }
+
+  const headers = tableLines[0] ? tableLines[0].split('\t').map(h => h.trim()) : [];
+  const rows = tableLines.slice(1).map(l => l.split('\t').map(c => c.trim()));
+
+  return { headers, rows, textContent: textLines.join('\n'), raw: text };
+}
+
+// =====================================================================
+// CELL RENDERING HELPERS
 // =====================================================================
 function fmtNum(n) {
   if (n === null || n === undefined || n === '' || n === '-') return '<span class="num-neutral">-</span>';
-  const num = Number(String(n).replace(/[^0-9.-]/g,''));
-  if (isNaN(num)) return n;
+  const str = String(n).trim();
+  if (str === '-') return '<span class="num-neutral">-</span>';
+  const num = parseFloat(str.replace(/[^0-9.-]/g, ''));
+  if (isNaN(num)) return escHtml(str);
   return num.toLocaleString('tr-TR');
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function pozClass(p) {
@@ -519,854 +759,633 @@ function pozClass(p) {
 }
 
 function drBar(dr, color) {
-  const pct = Math.min(100, (parseInt(dr) / 100) * 100);
-  return `<div class="dr-bar-wrap"><strong>${dr}</strong><div class="dr-bar"><div class="dr-bar-fill" style="width:${pct}%;background:${color}"></div></div></div>`;
+  const pct = Math.min(100, (parseFloat(dr) / 100) * 100);
+  if (isNaN(pct)) return escHtml(dr);
+  return '<div class="dr-bar-wrap"><strong>' + escHtml(String(dr)) + '</strong><div class="dr-bar"><div class="dr-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div></div>';
 }
 
 function winnerBadge(w) {
   if (!w || w === '-') return '<span class="num-neutral">-</span>';
-  const cls = w.toLowerCase().includes('kelebek') ? 'winner-kelebek' :
-               w.toLowerCase().includes('dogtas') ? 'winner-dogtas' :
-               w.toLowerCase().includes('lova') ? 'winner-lovayatak' : '';
-  return `<span class="${cls}">${w}</span>`;
+  const lw = w.toLowerCase();
+  const cls = lw.includes('kelebek') ? 'winner-kelebek' :
+              lw.includes('dogtas') ? 'winner-dogtas' :
+              lw.includes('lova') ? 'winner-lovayatak' : '';
+  return '<span class="' + cls + '">' + escHtml(w) + '</span>';
 }
 
-function makeSortableTable(headers, rows, opts = {}) {
-  let sortCol = opts.defaultSort !== undefined ? opts.defaultSort : -1;
-  let sortDir = 1;
+// =====================================================================
+// SMART COLUMN TYPE DETECTION
+// =====================================================================
+function detectColType(header) {
+  const h = header.toLowerCase();
+  if (/volume|hacim|trafik|backlink|kw\b|refdomains|ref\s?domain|link\s?sayisi|toplam\s?link|dofollow/.test(h)) return 'num';
+  if (/\bpoz(isyon)?\b/.test(h)) return 'poz';
+  if (/\burl\b/.test(h)) return 'url';
+  if (/\bdr\b/.test(h)) return 'dr';
+  if (/kazanan|winner/.test(h)) return 'winner';
+  if (/durum/.test(h)) return 'status';
+  if (/cpc/.test(h)) return 'num';
+  if (/organik\s?kw|org\.\s?kw/.test(h)) return 'num';
+  if (/org\.\s?trafik|aylik\s?trafik|rakip\s?trafik/.test(h)) return 'num';
+  return 'text';
+}
 
-  function sorted(col, dir) {
-    return [...rows].sort((a, b) => {
-      let av = a[col], bv = b[col];
-      const an = parseFloat(String(av).replace(/[^0-9.-]/g, ''));
-      const bn = parseFloat(String(bv).replace(/[^0-9.-]/g, ''));
-      if (!isNaN(an) && !isNaN(bn)) return dir * (an - bn);
-      return dir * String(av).localeCompare(String(bv), 'tr');
+function renderCellAuto(value, colType, colHeader) {
+  const v = String(value).trim();
+  if (v === '-' || v === '') return '<span class="num-neutral">-</span>';
+
+  switch (colType) {
+    case 'num': {
+      const num = parseFloat(v.replace(/[^0-9.-]/g, ''));
+      if (isNaN(num)) return escHtml(v);
+      return num.toLocaleString('tr-TR');
+    }
+    case 'poz': {
+      const n = parseInt(v);
+      if (isNaN(n)) return '<span class="num-neutral">-</span>';
+      return '<span class="' + pozClass(n) + '">' + n + '</span>';
+    }
+    case 'url':
+      return '<span class="url-pill">' + escHtml(v) + '</span>';
+    case 'dr': {
+      const drColor = '#7F8C8D';
+      return drBar(v, drColor);
+    }
+    case 'winner':
+      return winnerBadge(v);
+    case 'status': {
+      const cls = v.toLowerCase().includes('analiz') ? 'status-analiz' : 'status-rakip';
+      return '<span class="' + cls + '">' + escHtml(v) + '</span>';
+    }
+    default:
+      return escHtml(v);
+  }
+}
+
+// =====================================================================
+// SORTABLE TABLE BUILDER
+// =====================================================================
+let tableCounter = 0;
+
+function buildTable(headers, rows) {
+  if (!headers || headers.length === 0) return '<p style="color:var(--text-secondary);font-size:13px;padding:12px">Tablo verisi bulunamadi.</p>';
+
+  const id = 'tbl_' + (++tableCounter);
+  const colTypes = headers.map(h => detectColType(h));
+
+  const state = { sortCol: -1, sortDir: 1, filters: {} };
+
+  // Determine which columns are filterable
+  function isNumericCol(ci) {
+    return ['num', 'poz', 'dr'].includes(colTypes[ci]);
+  }
+
+  // Get unique values for a column
+  function getUniqueValues(ci) {
+    const vals = new Set();
+    rows.forEach(r => {
+      const v = (r[ci] || '').trim();
+      if (v && v !== '-') vals.add(v);
+    });
+    return [...vals].sort((a, b) => {
+      const an = parseFloat(a.replace(/[^0-9.-]/g, '')), bn = parseFloat(b.replace(/[^0-9.-]/g, ''));
+      if (!isNaN(an) && !isNaN(bn)) return an - bn;
+      return a.localeCompare(b, 'tr');
     });
   }
 
-  const id = 'tbl_' + Math.random().toString(36).slice(2);
+  function filteredRows() {
+    return rows.filter(r => {
+      for (const ci in state.filters) {
+        const f = state.filters[ci];
+        if (!f || f.size === 0) continue;
+        const val = (r[ci] || '').trim();
+        if (!f.has(val)) return false;
+      }
+      return true;
+    });
+  }
 
-  function renderTable(col, dir) {
-    const data = col >= 0 ? sorted(col, dir) : rows;
-    const tbody = data.map((r, ri) => {
-      const cells = r.map((c, ci) => {
-        let val = c;
-        if (opts.renderCell) val = opts.renderCell(c, ci, r, ri);
-        return `<td>${val}</td>`;
-      }).join('');
-      return `<tr>${cells}</tr>`;
-    }).join('');
+  function sortedRows() {
+    const filtered = filteredRows();
+    if (state.sortCol < 0) return filtered;
+    return [...filtered].sort((a, b) => {
+      const av = (a[state.sortCol] || '').replace(/[^0-9.-]/g, '');
+      const bv = (b[state.sortCol] || '').replace(/[^0-9.-]/g, '');
+      const an = parseFloat(av), bn = parseFloat(bv);
+      if (!isNaN(an) && !isNaN(bn)) return state.sortDir * (an - bn);
+      return state.sortDir * String(a[state.sortCol] || '').localeCompare(String(b[state.sortCol] || ''), 'tr');
+    });
+  }
 
+  function hasActiveFilters() {
+    return Object.keys(state.filters).some(k => state.filters[k] && state.filters[k].size > 0);
+  }
+
+  function renderFilterRow() {
+    let html = '<div class="filter-row" id="filters_' + id + '">';
+    html += '<span class="filter-label">Filtre:</span>';
+
+    headers.forEach((h, ci) => {
+      const uniqueVals = getUniqueValues(ci);
+      if (uniqueVals.length < 2 || uniqueVals.length > 500) return; // Skip useless filters
+
+      const filterActive = state.filters[ci] && state.filters[ci].size > 0;
+      const activeCount = filterActive ? state.filters[ci].size : 0;
+
+      html += '<div class="filter-chip" id="fc_' + id + '_' + ci + '">';
+      html += '<button class="filter-chip-btn' + (filterActive ? ' has-filter' : '') + '" data-col="' + ci + '">';
+      html += escHtml(h);
+      if (activeCount > 0) html += ' <span class="filter-count">' + activeCount + '</span>';
+      html += '</button>';
+      html += '<div class="filter-dropdown" id="fd_' + id + '_' + ci + '">';
+
+      if (uniqueVals.length > 8) {
+        html += '<input type="text" class="filter-search" placeholder="Ara..." data-col="' + ci + '">';
+      }
+
+      uniqueVals.forEach(v => {
+        const checked = filterActive && state.filters[ci].has(v) ? ' checked' : '';
+        html += '<label><input type="checkbox" value="' + escHtml(v) + '" data-col="' + ci + '"' + checked + '>' + escHtml(v) + '</label>';
+      });
+
+      html += '<div class="filter-actions">';
+      html += '<button class="clear-btn" data-col="' + ci + '">Temizle</button>';
+      html += '<button class="apply-btn" data-col="' + ci + '">Uygula</button>';
+      html += '</div></div></div>';
+    });
+
+    html += '<button class="filter-reset-btn' + (hasActiveFilters() ? ' show' : '') + '" id="freset_' + id + '">Tum Filtreleri Temizle</button>';
+    html += '</div>';
+    return html;
+  }
+
+  function renderTable() {
+    const data = sortedRows();
     const thead = headers.map((h, i) => {
       let cls = '';
-      if (i === col) cls = dir === 1 ? 'sorted-asc' : 'sorted-desc';
-      return `<th class="${cls}" onclick="sortTable('${id}',${i})">${h}<span class="sort-icon"></span></th>`;
+      if (i === state.sortCol) cls = state.sortDir === 1 ? 'sorted-asc' : 'sorted-desc';
+      return '<th class="' + cls + '" data-col="' + i + '">' + escHtml(h) + '<span class="sort-icon"></span></th>';
     }).join('');
 
-    return `<table id="${id}"><thead><tr>${thead}</tr></thead><tbody>${tbody}</tbody></table>`;
+    const tbody = data.map(r => {
+      const cells = headers.map((h, ci) => {
+        const val = r[ci] !== undefined ? r[ci] : '';
+        const rendered = renderCellAuto(val, colTypes[ci], h);
+        return '<td' + (ci === 0 ? ' style="font-weight:600"' : '') + '>' + rendered + '</td>';
+      }).join('');
+      return '<tr>' + cells + '</tr>';
+    }).join('');
+
+    const countInfo = hasActiveFilters() ?
+      '<div style="padding:8px 16px;font-size:11px;color:var(--text-secondary);background:#F8F9FA;border-bottom:1px solid var(--border)">' + data.length + ' / ' + rows.length + ' sonuc gosteriliyor</div>' : '';
+
+    return countInfo + '<table id="' + id + '"><thead><tr>' + thead + '</tr></thead><tbody>' + tbody + '</tbody></table>';
   }
 
-  window['sortTable'] = window['sortTable'] || function() {};
-  // store render fn
-  window._tables = window._tables || {};
-  window._tables[id] = { headers, rows, opts, sortCol, sortDir };
+  const html = renderFilterRow() + '<div class="table-wrap" id="wrap_' + id + '">' + renderTable() + '</div>';
 
-  const html = `<div class="table-wrap">${renderTable(sortCol, sortDir)}</div>`;
-  // attach sort after render
-  setTimeout(() => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const t = window._tables[id];
-    el.querySelectorAll('thead th').forEach((th, i) => {
-      th.onclick = () => {
-        if (t.sortCol === i) t.sortDir *= -1;
-        else { t.sortCol = i; t.sortDir = 1; }
-        const newHtml = renderTable2(t.headers, t.rows, t.opts, t.sortCol, t.sortDir, id);
-        el.parentElement.innerHTML = newHtml;
-        // reattach
-        const el2 = document.getElementById(id);
-        el2.querySelectorAll('thead th').forEach((th2, j) => {
-          th2.onclick = () => { th.onclick && el.querySelectorAll('thead th')[j].onclick(); };
-        });
-        attachSort(id, t);
-      };
+  function fullRerender() {
+    const wrap = document.getElementById('wrap_' + id);
+    if (!wrap) return;
+    wrap.innerHTML = renderTable();
+
+    // Update filter UI
+    const filterRow = document.getElementById('filters_' + id);
+    if (filterRow) {
+      filterRow.outerHTML = renderFilterRow();
+      attachFilterListeners();
+    }
+    attachSortListeners();
+  }
+
+  function attachSortListeners() {
+    const wrap = document.getElementById('wrap_' + id);
+    if (!wrap) return;
+    wrap.querySelectorAll('thead th').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = parseInt(th.getAttribute('data-col'));
+        if (state.sortCol === col) state.sortDir *= -1;
+        else { state.sortCol = col; state.sortDir = 1; }
+        fullRerender();
+      });
     });
+  }
+
+  function attachFilterListeners() {
+    // Chip buttons toggle dropdowns
+    document.querySelectorAll('#filters_' + id + ' .filter-chip-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const col = btn.getAttribute('data-col');
+        const dd = document.getElementById('fd_' + id + '_' + col);
+        const wasOpen = dd.classList.contains('show');
+        // Close all dropdowns first
+        document.querySelectorAll('#filters_' + id + ' .filter-dropdown').forEach(d => d.classList.remove('show'));
+        if (!wasOpen) dd.classList.add('show');
+      });
+    });
+
+    // Search within dropdown
+    document.querySelectorAll('#filters_' + id + ' .filter-search').forEach(input => {
+      input.addEventListener('input', e => {
+        const col = input.getAttribute('data-col');
+        const dd = document.getElementById('fd_' + id + '_' + col);
+        const term = input.value.toLowerCase();
+        dd.querySelectorAll('label').forEach(lbl => {
+          lbl.style.display = lbl.textContent.toLowerCase().includes(term) ? '' : 'none';
+        });
+      });
+    });
+
+    // Apply buttons
+    document.querySelectorAll('#filters_' + id + ' .apply-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const col = btn.getAttribute('data-col');
+        const dd = document.getElementById('fd_' + id + '_' + col);
+        const checked = dd.querySelectorAll('input[type="checkbox"]:checked');
+        if (checked.length === 0) {
+          delete state.filters[col];
+        } else {
+          state.filters[col] = new Set([...checked].map(cb => cb.value));
+        }
+        dd.classList.remove('show');
+        fullRerender();
+      });
+    });
+
+    // Clear buttons
+    document.querySelectorAll('#filters_' + id + ' .clear-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const col = btn.getAttribute('data-col');
+        delete state.filters[col];
+        const dd = document.getElementById('fd_' + id + '_' + col);
+        dd.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        dd.classList.remove('show');
+        fullRerender();
+      });
+    });
+
+    // Reset all
+    const resetBtn = document.getElementById('freset_' + id);
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        state.filters = {};
+        fullRerender();
+      });
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#filters_' + id)) {
+        document.querySelectorAll('#filters_' + id + ' .filter-dropdown').forEach(d => d.classList.remove('show'));
+      }
+    });
+  }
+
+  setTimeout(() => {
+    attachSortListeners();
+    attachFilterListeners();
   }, 0);
 
   return html;
 }
 
-function renderTable2(headers, rows, opts, sortCol, sortDir, id) {
-  function sorted() {
-    if (sortCol < 0) return rows;
-    return [...rows].sort((a, b) => {
-      let av = a[sortCol], bv = b[sortCol];
-      const an = parseFloat(String(av).replace(/[^0-9.-]/g, ''));
-      const bn = parseFloat(String(bv).replace(/[^0-9.-]/g, ''));
-      if (!isNaN(an) && !isNaN(bn)) return sortDir * (an - bn);
-      return sortDir * String(av).localeCompare(String(bv), 'tr');
-    });
-  }
-  const data = sorted();
-  const tbody = data.map((r, ri) => {
-    const cells = r.map((c, ci) => {
-      let val = c;
-      if (opts && opts.renderCell) val = opts.renderCell(c, ci, r, ri);
-      return `<td>${val}</td>`;
-    }).join('');
-    return `<tr>${cells}</tr>`;
-  }).join('');
-  const thead = headers.map((h, i) => {
-    let cls = '';
-    if (i === sortCol) cls = sortDir === 1 ? 'sorted-asc' : 'sorted-desc';
-    return `<th class="${cls}">${h}<span class="sort-icon"></span></th>`;
-  }).join('');
-  return `<table id="${id}"><thead><tr>${thead}</tr></thead><tbody>${tbody}</tbody></table>`;
-}
-
-function attachSort(id, t) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.querySelectorAll('thead th').forEach((th, i) => {
-    th.onclick = () => {
-      if (t.sortCol === i) t.sortDir *= -1;
-      else { t.sortCol = i; t.sortDir = 1; }
-      const newHtml = renderTable2(t.headers, t.rows, t.opts, t.sortCol, t.sortDir, id);
-      el.parentElement.innerHTML = newHtml;
-      attachSort(id, t);
-    };
-  });
-}
-
-function buildSortableTable(headers, rows, opts = {}) {
-  const id = 'tbl_' + Math.random().toString(36).slice(2);
-  const t = { headers, rows, opts, sortCol: opts.defaultSort !== undefined ? opts.defaultSort : -1, sortDir: -1 };
-  const html = `<div class="table-wrap">${renderTable2(headers, rows, opts, t.sortCol, t.sortDir, id)}</div>`;
-  setTimeout(() => attachSort(id, t), 0);
-  return html;
-}
-
 // =====================================================================
-// RENDER FUNCTIONS
+// ANALYSIS TEXT RENDERER
 // =====================================================================
+function renderAnalysisText(textContent) {
+  if (!textContent || textContent.trim() === '') return '';
 
-function render_01() {
-  const headers = ['Metrik', 'kelebek.com', 'lovayatak.com', 'dogtas.com'];
-  const rows = [
-    ['Domain Rating (DR)', '36', '31', '46'],
-    ['Toplam Backlink', '16,467', '105,075', '16,756'],
-    ['Referring Domains', '2,024', '231', '2,641'],
-    ['Organik Keyword Sayisi', '16,734', '4,655', '18,135'],
-    ['Top 1-3 Keyword', '1,708', '524', '2,356'],
-    ['Top 4-10 Keyword', '6,613', '2,147', '8,210'],
-    ['Organik Trafik (Aylik)', '314,480', '49,512', '409,961'],
-    ['Organik Trafik Degeri (USD)', '$14,322.90', '$2,450.47', '$20,401.87'],
-    ['Paid Keyword Sayisi', '135', '0', '18'],
-    ['Paid Trafik', '372', '0', '57'],
-  ];
-  const opts = {
-    renderCell: (c, ci, r) => {
-      if (ci === 0) return `<strong>${c}</strong>`;
-      return c;
-    }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
+  const lines = textContent.split('\n').filter(l => l.trim() !== '');
+  if (lines.length === 0) return '';
 
-function render_11() {
-  const headers = ['Metrik', 'kelebek.com', 'lovayatak.com', 'dogtas.com'];
-  const rows = [
-    ['Domain Rating (DR)', '36', '31', '46'],
-    ['Toplam Backlink', '16,467', '105,075', '16,756'],
-    ['Referring Domains', '2,024', '231', '2,641'],
-    ['Max Ref Domain DR', '99 (youtube.com)', '94 (wixsite.com)', '99 (youtube.com)'],
-    ['Dofollow Orani (Top 30)', 'Dusuk', 'Dusuk', 'Orta'],
-    ['Kaliteli Ref Domain (DR>70)', 'Yuksek', 'Dusuk', 'Yuksek'],
-    ['Spam Backlink Riski', 'Orta', '<span class="badge badge-kritik">Yuksek</span>', 'Dusuk'],
-  ];
-  const opts = { renderCell: (c, ci) => ci === 0 ? `<strong>${c}</strong>` : c };
-  return buildSortableTable(headers, rows, opts);
-}
+  let sections = [];
+  let currentSection = null;
 
-function render_15() {
-  const headers = ['Keyword', 'Hacim', 'Kelebek Poz', 'Dogtas Poz', 'Lova Poz', 'Kazanan', 'Kategori'];
-  const rows = [
-    ['yatak odasi takimi',106000,12,3,'-','Dogtas','Yatak Odasi'],
-    ['koltuk takimi',151000,19,7,'-','Dogtas','Koltuk'],
-    ['tv unitesi',68000,12,4,'-','Dogtas','TV Unitesi'],
-    ['l koltuk',57000,15,10,'-','Dogtas','Koltuk'],
-    ['makyaj masasi',50000,8,'-','-','Kelebek','Aksesuar'],
-    ['yatak',40000,'-','-',9,'Lovayatak','Yatak'],
-    ['sandalye',42000,12,'-','-','Kelebek','Sandalye'],
-    ['lambader',49000,11,'-','-','Kelebek','Aydinlatma'],
-    ['puf',38000,8,'-','-','Kelebek','Koltuk'],
-    ['konsol',37000,6,11,'-','Kelebek','Konsol'],
-    ['orta sehpa',36000,12,'-','-','Kelebek','Sehpa'],
-    ['yemek masasi',35000,13,12,'-','Dogtas','Masa'],
-    ['mutfak masasi',33000,9,11,'-','Kelebek','Masa'],
-    ['balkon takimi',33000,9,10,'-','Kelebek','Bahce'],
-    ['cift kisilik yatak',30000,'-','-',7,'Lovayatak','Yatak'],
-    ['yemek masasi takimi',31000,9,'-','-','Kelebek','Masa'],
-    ['somineli tv unitesi',31000,12,'-','-','Kelebek','TV Unitesi'],
-    ['berjer',28000,'-',12,'-','Dogtas','Koltuk'],
-    ['l koltuk takimi',27000,10,5,'-','Dogtas','Koltuk'],
-    ['tek kisilik yatak',26000,'-','-',6,'Lovayatak','Yatak'],
-    ['zigon sehpa',24000,11,'-','-','Kelebek','Sehpa'],
-    ['battaniye',23000,'-','-',10,'Lovayatak','Ev Tekstili'],
-    ['kose koltuk takimi',22000,11,10,'-','Dogtas','Koltuk'],
-    ['antrasit renk',22000,'-',2,'-','Dogtas','Blog'],
-    ['boy aynasi',21000,10,12,'-','Kelebek','Aksesuar'],
-    ['ceyiz listesi',21000,'-','-',13,'Lovayatak','Blog'],
-    ['tv unitesi modelleri',20000,'-',5,'-','Dogtas','TV Unitesi'],
-    ['masa sandalye takimi',20000,9,'-','-','Kelebek','Masa'],
-    ['bohem ne demek',19000,2,'-','-','Kelebek','Blog'],
-    ['salon takimi',18000,'-',3,'-','Dogtas','Koltuk'],
-  ];
-  const opts = {
-    renderCell: (c, ci, r) => {
-      if (ci === 1) return `<strong>${Number(c).toLocaleString('tr-TR')}</strong>`;
-      if (ci >= 2 && ci <= 4) {
-        if (c === '-') return '<span class="num-neutral">-</span>';
-        return `<span class="${pozClass(c)}">${c}</span>`;
-      }
-      if (ci === 5) return winnerBadge(c);
-      return c;
-    }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
-
-function render_16() {
-  const headers = ['Karsilastirma', 'Ortak KW', 'Kelebek Avantajli', 'Dogtas Avantajli', 'Lovayatak Avantajli', 'Paylasim %'];
-  const rows = [
-    ['Kelebek vs Dogtas','9,688','9,407','12,964','-','30.2%'],
-    ['Kelebek vs Istikbal','12,342','6,753','-','-','27.2%'],
-    ['Kelebek vs Bellona','12,125','6,970','-','-','22.3%'],
-    ['Kelebek vs IKEA','11,635','7,460','-','-','11.9%'],
-    ['Lovayatak vs Yatas','2,408','-','-','2,435','13.5%'],
-    ['Lovayatak vs Bambi','2,052','-','-','2,791','16.7%'],
-    ['Lovayatak vs Isbir','1,591','-','-','3,252','19.4%'],
-    ['Lovayatak vs Puffy','1,582','-','-','3,261','20.1%'],
-    ['Dogtas vs Istikbal','13,191','-','9,461','-','27.4%'],
-    ['Dogtas vs Bellona','13,932','-','8,720','-','24.9%'],
-    ['Dogtas vs IKEA','11,775','-','10,877','-','11.6%'],
-    ['Dogtas vs Enzahome','8,112','-','14,540','-','25.1%'],
-  ];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (ci === 0) {
-        let cls = '';
-        if (c.startsWith('Kelebek')) cls = 'badge-kelebek';
-        else if (c.startsWith('Dogtas')) cls = 'badge-dogtas';
-        else if (c.startsWith('Lovayatak')) cls = 'badge-lovayatak';
-        return `<span class="badge ${cls}">${c.split(' ')[0]}</span> ${c.split(' ').slice(1).join(' ')}`;
-      }
-      if (c === '-') return '<span class="num-neutral">-</span>';
-      return c;
-    }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
-
-function render_17() {
-  const headers = ['Kategori', 'Kelebek URL', 'Kelebek Trafik', 'Kelebek KW', 'Dogtas URL', 'Dogtas Trafik', 'Dogtas KW', 'Lovayatak URL', 'Lova Trafik', 'Lova KW', 'Kazanan'];
-  const rows = [
-    ['Anasayfa','kelebek.com','111,629','4,772','dogtas.com','79,124','2,461','lovayatak.com','7,662','853','Kelebek'],
-    ['Koltuk Takimlari','/koltuk-takimlari','17,726','2,997','/koltuk-takimlari','37,484','2,746','-','-','-','Dogtas'],
-    ['Yatak Odasi','/yatak-odasi-takimi','10,777','3,448','/yatak-odasi-takimlari','28,390','1,452','-','-','-','Dogtas'],
-    ['Yemek Odasi','/yemek-odasi-takimi','12,556','2,215','/yemek-odasi-takimlari','4,387','988','-','-','-','Kelebek'],
-    ['Kose Takimi','/kose-takimi','6,879','1,820','/kose-takimlari','15,336','1,441','-','-','-','Dogtas'],
-    ['TV Unitesi','/tv-unite-takimi','6,412','1,008','/tv-unitesi-lp','11,006','259','-','-','-','Dogtas'],
-    ['Mutfak Masa','/mutfak-masa-takimi','8,062','698','/mutfak-masasi-takimi','4,822','868','-','-','-','Kelebek'],
-    ['Genc Odasi','/genc-odasi-takimlari','5,012','1,924','/genc-odasi-takimlari','3,785','1,081','-','-','-','Kelebek'],
-    ['Konsol','/konsol','3,013','131','/konsol','3,476','292','-','-','-','Dogtas'],
-    ['Dolap','/dolap','2,817','464','/dolap','6,859','1,174','-','-','-','Dogtas'],
-    ['Sehpa','/orta-sehpa','2,707','220','/sehpalar','1,571','181','-','-','-','Kelebek'],
-    ['Berjer','/berjer','1,049','110','/berjerler-ve-puflar','2,985','496','-','-','-','Dogtas'],
-    ['Sandalye','/sandalye-bench','2,030','118','/sandalye-bank','1,101','46','-','-','-','Kelebek'],
-    ['Bahce/Balkon','/bahce-seti','1,724','96','/bahce-ve-balkon','2,666','110','-','-','-','Dogtas'],
-    ['Yatak','-','-','-','-','-','-','/yatak','2,948','1,275','Lovayatak'],
-    ['Tek Kisilik Yatak','-','-','-','-','-','-','/tek-kisilik-yataklar','1,355','52','Lovayatak'],
-    ['Cift Kisilik Yatak','-','-','-','-','-','-','/cift-kisilik-yataklar','946','71','Lovayatak'],
-  ];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (c === '-') return '<span class="num-neutral">-</span>';
-      if (ci === 10) return winnerBadge(c);
-      if (ci === 1 || ci === 4 || ci === 7) return c.startsWith('/') ? `<span class="url-pill">${c}</span>` : c;
-      return c;
-    }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
-
-function render_24() {
-  const brands = [
-    {
-      name: 'Kelebek Stratejisi',
-      color: '#E74C3C',
-      emoji: '🔴',
-      items: [
-        { title: 'DR Artirma (DR 36 > 50+)', desc: 'Yuksek otoriteli sitelerden backlink kampanyasi', etki: 'Cok Yuksek' },
-        { title: 'Koltuk Takimi (Poz 19 > Top 5)', desc: 'Icerik zenginlestirme, schema markup, internal link', etki: 'Yuksek' },
-        { title: 'Yatak Odasi (Poz 12 > Top 5)', desc: 'Sayfa yeniden yapilandirma, UX, kullanici yorumlari', etki: 'Yuksek' },
-        { title: 'TV Unitesi (Poz 12 > Top 5)', desc: 'Icerik guncelleme, gorsel optimizasyon, video', etki: 'Orta' },
-        { title: 'Blog Devam', desc: 'Bohem #1, renk rehberleri guclu. Mobilya bakim, dekorasyon icerikleri', etki: 'Orta' },
-        { title: 'Internal Link', desc: 'Kategori sayfalari 2300 > 4000+ link. Footer/sidebar/breadcrumb', etki: 'Yuksek' },
-        { title: 'Makyaj Masasi (Poz 8, 50K hacim > Top 3)', desc: 'Ozel LP, rehber, video', etki: 'Yuksek' },
-      ]
-    },
-    {
-      name: 'Dogtas Stratejisi',
-      color: '#2ECC71',
-      emoji: '🟢',
-      items: [
-        { title: 'DR Koruma (DR 46 > 55+)', desc: 'Refdomains avantajini koruyarak kaliteli link building', etki: 'Cok Yuksek' },
-        { title: 'Backlink Artirma (16K > 50K+)', desc: 'PR kampanyalari, misafir yazilari, sponsorluklar', etki: 'Yuksek' },
-        { title: 'Koltuk Hakimiyeti (Poz 7, 151K > Top 3)', desc: 'UX iyilestirme, hiz optimizasyonu', etki: 'Cok Yuksek' },
-        { title: '404 Link Kaybi', desc: '2788 internal link 404\'e gidiyor - ACIL duzeltilmeli', etki: 'Yuksek' },
-        { title: 'Yatak Odasi (Poz 3, 106K > Poz 1)', desc: 'Icerik zenginlestirme, video, 360 goruntuleme', etki: 'Cok Yuksek' },
-        { title: 'Sayfa Cannibalization', desc: '/yatak-odasi ve /yatak-odasi-takimlari cakisiyor - Birlestirilmeli', etki: 'Yuksek' },
-        { title: 'Dugun Paketi (Poz 4 > Poz 1)', desc: 'Ozel LP, fiyat hesaplayici, set onerileri', etki: 'Orta' },
-      ]
-    },
-    {
-      name: 'Lovayatak Stratejisi',
-      color: '#3498DB',
-      emoji: '🔵',
-      items: [
-        { title: 'ACIL Spam Temizligi', desc: '105K BL / 231 RD = spam riski. Backlink audit + Disavow', etki: 'Kritik' },
-        { title: 'DR Artirma (DR 31 > 45+)', desc: 'Temiz profil sonrasi kaliteli link building', etki: 'Cok Yuksek' },
-        { title: 'Refdomains (231 > 750+)', desc: 'Farkli domainlerden dogal link kazanimi', etki: 'Cok Yuksek' },
-        { title: 'Yatak Hakimiyeti (yatak #9, tek #6, cift #7 > Top 3)', desc: 'Karsilastirma tablolari', etki: 'Cok Yuksek' },
-        { title: 'Uyku Blog Devam', desc: 'Uyku taktikleri #1, bebek uyku #1. Uzun kuyruk icerik', etki: 'Yuksek' },
-        { title: 'Ev Tekstili (Nevresim #10, Battaniye #10 > Top 5)', desc: 'Icerik zenginlestirme', etki: 'Orta' },
-        { title: 'Cross-sell Linkleri', desc: 'Yatak > baza > baslik > nevresim > alez zinciri', etki: 'Orta' },
-      ]
-    }
-  ];
-  const common = ['Core Web Vitals optimizasyonu','Product, FAQ, Breadcrumb Schema','Pillar content + topic cluster yaklasimi','Mobile-first optimizasyon','YouTube video stratejisi','Kullanici yorumlari ve fotograflari','Sezonsal icerik planlama'];
-
-  function etkiBadge(e) {
-    const map = { 'Kritik': 'badge-kritik', 'Cok Yuksek': 'badge-cok-yuksek', 'Yuksek': 'badge-yuksek', 'Orta': 'badge-orta' };
-    return `<span class="badge ${map[e] || 'badge-orta'}">${e}</span>`;
+  function flushSection() {
+    if (currentSection) sections.push(currentSection);
+    currentSection = null;
   }
 
-  let html = '<div class="strategy-grid">';
-  brands.forEach(b => {
-    html += `<div class="strategy-section">
-      <div class="strategy-section-header" style="background:${b.color}">${b.emoji} ${b.name}</div>
-      <div class="strategy-cards">`;
-    b.items.forEach((item, i) => {
-      html += `<div class="strategy-card">
-        <div class="strategy-card-top">
-          <div class="strategy-card-num" style="background:${b.color}">${i+1}</div>
-          <h4>${item.title}</h4>
-          ${etkiBadge(item.etki)}
-        </div>
-        <p>${item.desc}</p>
-      </div>`;
-    });
-    html += `</div></div>`;
-  });
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
 
-  html += `<div class="strategy-section">
-    <div class="strategy-section-header" style="background:#34495E">Ortak Stratejiler</div>
-    <div class="strategy-common">
-      <ul>${common.map(c => `<li>${c}</li>`).join('')}</ul>
-    </div>
-  </div>`;
+    // Detect section headers: ALL CAPS lines, or lines ending with ":"
+    const isHeader = /^[A-Z\s\u00C0-\u017E\(\)\/]{4,}$/.test(line) ||
+                     /^[A-Z\s]{3,}:/.test(line) ||
+                     line.endsWith(':');
+
+    const isKritik = line.toUpperCase().includes('KRITIK UYARI');
+
+    if (isHeader) {
+      flushSection();
+      currentSection = { title: line, items: [], isKritik };
+    } else {
+      if (!currentSection) {
+        currentSection = { title: '', items: [], isKritik: false };
+      }
+      currentSection.items.push(line);
+    }
+  }
+  flushSection();
+
+  let html = '<div class="analysis-sections">';
+  sections.forEach(function(sec) {
+    html += '<div class="analysis-card">';
+    if (sec.title) {
+      html += '<div class="analysis-card-header' + (sec.isKritik ? ' kritik' : '') + '">' + escHtml(sec.title) + '</div>';
+    }
+    if (sec.items.length > 0) {
+      html += '<div class="analysis-card-body">';
+      // Detect if items are key-value (tab-separated)
+      const hasKV = sec.items.some(function(it) { return it.includes('\t'); });
+      if (hasKV) {
+        sec.items.forEach(function(item) {
+          const parts = item.split('\t');
+          if (parts.length >= 2) {
+            html += '<div class="kv-row"><span class="kv-key">' + escHtml(parts[0]) + '</span><span class="kv-val">' + escHtml(parts.slice(1).join(' ')) + '</span></div>';
+          } else {
+            html += '<div class="kv-row">' + escHtml(item) + '</div>';
+          }
+        });
+      } else {
+        html += '<ul>';
+        sec.items.forEach(function(item) {
+          html += '<li>' + escHtml(item) + '</li>';
+        });
+        html += '</ul>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  });
   html += '</div>';
   return html;
 }
 
 // =====================================================================
-// KW ARAŞTIRMA TABLES
-function kwTable(rows) {
-  const headers = ['Keyword','Hacim','Pozisyon','Trafik','KD','CPC (cent)','URL'];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (ci === 1) return `<strong>${Number(c).toLocaleString('tr-TR')}</strong>`;
-      if (ci === 2) return `<span class="${pozClass(c)}">${c}</span>`;
-      if (ci === 3) return Number(c).toLocaleString('tr-TR');
-      if (ci === 6) return `<span class="url-pill">${c}</span>`;
-      return c;
-    }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
-
-function render_02() {
-  const rows = [
-    ['kelebek',94000,1,68093,12,4,'kelebek.com/'],
-    ['kelebek mobilya',87000,1,48478,0,4,'kelebek.com/'],
-    ['bohem koltuk takimi',46000,5,3545,1,6,'kelebek.com/koltuk-takimlari'],
-    ['kelebek koltuk takimi',2900,1,3000,0,3,'kelebek.com/koltuk-takimlari'],
-    ['yatak odasi takimi',106000,12,2671,7,8,'kelebek.com/yatak-odasi-takimi'],
-    ['yemek odasi takimi',11000,3,2130,3,6,'kelebek.com/yemek-odasi-takimi'],
-    ['konsol',37000,6,1811,0,4,'kelebek.com/konsol'],
-    ['kelebek mutfak masasi',1900,1,1765,0,3,'kelebek.com/mutfak-masa-takimi'],
-    ['kelebek genc odasi',2100,1,1672,0,6,'kelebek.com/genc-odasi-takimlari'],
-    ['mutfak masasi',33000,9,1430,2,4,'kelebek.com/mutfak-masa-takimi'],
-    ['makyaj masasi',50000,8,1401,0,8,'kelebek.com/makyaj-masasi'],
-    ['tv unitesi',68000,12,1399,40,5,'kelebek.com/tv-unite-takimi'],
-    ['kahverengi ile uyumlu renkler',5200,1,1313,0,1,'kelebek.com/dekorasyonda-kahverengi-ile-uyumlu-renkler'],
-    ['lambader',49000,11,1279,1,6,'kelebek.com/lambader'],
-    ['balkon takimi',33000,9,1188,1,3,'kelebek.com/bahce-seti'],
-    ['yatak odasi takimi fiyatlari',8200,5,1005,6,7,'kelebek.com/yatak-odasi-takimi'],
-    ['kelebek kose takimi',2200,1,1000,0,3,'kelebek.com/kose-takimi'],
-    ['kelebek yatakli kanepe',1000,1,987,0,6,'kelebek.com/yatakli-koltuk'],
-    ['2025 koltuk modelleri',9700,4,912,51,5,'kelebek.com/koltuk-takimlari'],
-    ['yemek masasi takimi',31000,9,863,2,5,'kelebek.com/yemek-odasi-takimi'],
-    ['koltuk neyle silinir',2100,1,852,0,5,'kelebek.com/blog-koltuk-nasil-silinir'],
-    ['boy aynasi',21000,10,806,0,'-','kelebek.com/boy-aynasi'],
-    ['orta sehpa',36000,12,762,0,5,'kelebek.com/orta-sehpa'],
-    ['kose koltuk takimi',22000,11,756,5,6,'kelebek.com/kose-takimi'],
-    ['koltuk takimi',151000,19,719,54,8,'kelebek.com/koltuk-takimlari'],
-    ['bohem',17000,1,718,0,4,'kelebek.com/blog-bohem-tarz-nedir'],
-    ['sandalye',42000,12,661,0,4,'kelebek.com/sandalye-bench'],
-    ['l koltuk',57000,15,633,5,6,'kelebek.com/kose-takimi'],
-    ['yan sehpa',5900,5,618,0,8,'kelebek.com/yan-sehpa'],
-    ['zigon sehpa',24000,11,611,0,4,'kelebek.com/zigon-sehpa'],
-  ];
-  return kwTable(rows);
-}
-
-function render_03() {
-  const rows = [
-    ['lova yatak',15000,1,6240,0,9,'lovayatak.com/'],
-    ['lova',4200,1,2123,11,13,'lovayatak.com/'],
-    ['yatak',40000,9,1131,18,6,'lovayatak.com/yatak'],
-    ['tek kisilik yatak',26000,6,810,3,5,'lovayatak.com/tek-kisilik-yataklar'],
-    ['uyuma taktikleri',1400,1,735,0,1,'lovayatak.com/blog-uykuya-dalma-yontemleri'],
-    ['neden ruya goruruz',700,1,688,0,1,'lovayatak.com/blog-neden-ruya-goruruz'],
-    ['ani uyku bastirmasi sebepleri',1900,1,681,0,3,'lovayatak.com/blog-ani-uyku-bastirmasi-neden-olur'],
-    ['siesta ne demek',2700,1,648,1,'-','lovayatak.com/blog-siesta-uykusu-nedir'],
-    ['siesta nedir',2700,1,612,3,'-','lovayatak.com/blog-siesta-uykusu-nedir'],
-    ['huzursuz bacak sendromundan kurtuldum',4400,3,600,0,2,'lovayatak.com/blog-huzursuz-bacak'],
-    ['hizli uyuma taktigi',1500,1,549,0,1,'lovayatak.com/blog-uykuya-dalma-yontemleri'],
-    ['nasil hizli uyunur',1200,1,539,0,1,'lovayatak.com/blog-uykuya-dalma-yontemleri'],
-    ['battaniye',23000,10,529,2,5,'lovayatak.com/battaniye'],
-    ['cift kisilik nevresim takimi',15000,10,521,1,5,'lovayatak.com/cift-kisilik-nevresim-takimi'],
-    ['uykusuzlugun zararlari',400,1,470,0,1,'lovayatak.com/blog-uykusuzlugun-zararlari'],
-    ['yatak ortusu cift kisilik',5300,6,405,0,3,'lovayatak.com/cift-kisilik-yatak-ortusu'],
-    ['lateks yatak',5900,7,343,0,13,'lovayatak.com/blog-lateks-yatak-nedir'],
-    ['uyku seti',6400,6,318,0,5,'lovayatak.com/uyku-seti'],
-    ['cift kisilik yatak',30000,7,281,3,5,'lovayatak.com/cift-kisilik-yataklar'],
-    ['kotu ruya gormek',800,1,272,0,1,'lovayatak.com/blog-kabus-nedir'],
-    ['cift kisilik baza baslik yatak',6800,8,260,1,5,'lovayatak.com/cift-kisilik-bazalar'],
-    ['nevresim takimi cift kisilik',14000,9,250,1,4,'lovayatak.com/cift-kisilik-nevresim-takimi'],
-    ['hipoalerjenik ne demek',1200,1,238,1,2,'lovayatak.com/blog-hipoalerjenik-nedir'],
-    ['yatak alezi',3600,6,216,0,8,'lovayatak.com/alez'],
-    ['ceyiz listesi',21000,13,214,0,4,'lovayatak.com/blog-yatak-odasi-ceyiz-listesi'],
-    ['ranforce ne demek',1500,3,193,0,9,'lovayatak.com/blog-ranforce-ne-demek'],
-    ['reflu yatagi ne ise yarar',500,1,178,0,5,'lovayatak.com/blog-reflu-yastigi'],
-    ['mavi isik',5900,5,170,0,1,'lovayatak.com/blog-mavi-isik-nedir'],
-    ['yatak basligi',12000,12,168,0,5,'lovayatak.com/basliklar'],
-    ['alez nedir',3600,3,159,0,5,'lovayatak.com/blog-alez-nedir'],
-  ];
-  return kwTable(rows);
-}
-
-function render_04() {
-  const rows = [
-    ['dogtas',75000,1,72744,0,4,'dogtas.com/'],
-    ['yatak odasi takimi',106000,3,19898,7,8,'dogtas.com/yatak-odasi-takimlari'],
-    ['koltuk takimi',151000,7,10468,54,8,'dogtas.com/koltuk-takimlari'],
-    ['tv unitesi',68000,4,8339,40,5,'dogtas.com/tv-unitesi-lp'],
-    ['dogtas mobilya',17000,1,8028,0,6,'dogtas.com/'],
-    ['dogtas koltuk takimi',7900,1,6672,0,3,'dogtas.com/koltuk-takimlari'],
-    ['dogtas yatak odasi',4100,1,3532,0,3,'dogtas.com/yatak-odasi-takimlari'],
-    ['dokuma kumas nedir',9400,1,2845,0,7,'dogtas.com/blog-dokuma-kumas-nedir'],
-    ['dogtas koltuk',3200,1,2801,3,4,'dogtas.com/koltuk-takimlari'],
-    ['l koltuk takimi',27000,5,2752,5,5,'dogtas.com/kose-takimlari'],
-    ['koltuk takimi modelleri',15000,2,2737,55,7,'dogtas.com/koltuk-takimlari'],
-    ['salon takimi',18000,3,2332,55,7,'dogtas.com/koltuk-takimlari'],
-    ['dogtas genc odasi',2200,1,2248,0,3,'dogtas.com/genc-odasi-takimlari'],
-    ['l koltuk',57000,10,1930,5,6,'dogtas.com/kose-takimlari'],
-    ['retro ne demek',18000,1,1619,0,1,'dogtas.com/blog-retro-ne-demek'],
-    ['dogtas tv unitesi',2400,1,1446,0,4,'dogtas.com/tv-uniteleri'],
-    ['dugun paketi mobilya',6700,4,1211,2,8,'dogtas.com/dugun-paketleri'],
-    ['televizyon unitesi modelleri',8000,2,1157,53,5,'dogtas.com/tv-uniteleri'],
-    ['2025 koltuk modelleri',9700,3,1146,51,5,'dogtas.com/koltuk-takimlari'],
-    ['kose takimi',18000,6,1138,5,6,'dogtas.com/kose-takimlari'],
-    ['televizyon unitesi',14000,5,1094,48,4,'dogtas.com/tv-unitesi-lp'],
-    ['dogtas mutfak masasi',1700,1,987,0,3,'dogtas.com/mutfak-masasi-takimi'],
-    ['unite modelleri',5100,2,987,51,4,'dogtas.com/tv-uniteleri'],
-    ['balkon takimi',33000,10,949,1,3,'dogtas.com/bahce-ve-balkon'],
-    ['konsol modelleri',16000,7,914,1,3,'dogtas.com/konsol'],
-    ['bar masasi',7400,5,792,0,9,'dogtas.com/linthe-bar-masasi'],
-    ['tek kisilik yatak olculeri',6900,3,771,0,6,'dogtas.com/blog-tek-kisilik-yatak-olculeri'],
-    ['antrasit renk',22000,2,631,0,1,'dogtas.com/blog-antrasit-renk-nedir'],
-    ['koltuk takimi fiyatlari',8200,6,439,52,7,'dogtas.com/koltuk-takimlari'],
-    ['sukulent',18000,2,383,0,5,'dogtas.com/blog-sukulent-nedir'],
-  ];
-  return kwTable(rows);
-}
-
+// STRATEGY FILE 24 SPECIAL RENDERER
 // =====================================================================
-// RAKİP ARAŞTIRMA
-function rakipTable(rows, selfLabel) {
-  const headers = ['Rakip Domain','Ortak KW','Rakip KW',selfLabel+' KW','Paylasim %','Rakip Trafik','Rakip DR'];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (ci === 0) return `<strong>${c}</strong>`;
-      if (ci === 5) return Number(c).toLocaleString('tr-TR');
-      if (ci === 6) return drBar(c, '#7F8C8D');
-      return c;
+function renderStrategyFile(text) {
+  const lines = text.split('\n');
+
+  const brandSections = [];
+  let commonItems = [];
+  let currentBrand = null;
+  let currentItems = [];
+  let inCommon = false;
+
+  function flushBrand() {
+    if (currentBrand) {
+      brandSections.push({ name: currentBrand, items: currentItems.slice() });
     }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
+    currentBrand = null;
+    currentItems = [];
+  }
 
-function render_05() {
-  const rows = [
-    ['istikbal.com.tr',12342,26252,6753,'27.2%',1260922,66],
-    ['bellona.com.tr',12125,35096,6970,'22.3%',1189177,56],
-    ['ikea.com.tr',11635,78559,7460,'11.9%',3833538,66],
-    ['koctas.com.tr',11241,198481,7854,'5.1%',3848351,72],
-    ['vivense.com',9710,25533,9385,'21.7%',1133138,64],
-    ['dogtas.com',9688,12964,9407,'30.2%',371220,46],
-    ['enzahome.com.tr',7989,9715,11106,'27.7%',392036,39],
-    ['mondihome.com.tr',7083,6598,12012,'27.5%',233929,41],
-    ['gundogdumobilya.com.tr',6671,8241,12424,'24.4%',197635,36],
-    ['modalife.com',6414,6556,12681,'25.0%',269385,33],
-  ];
-  return rakipTable(rows, 'Kelebek');
-}
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
 
-function render_06() {
-  const rows = [
-    ['yatasbedding.com.tr',2408,12865,2435,'13.5%',608890,49],
-    ['istikbal.com.tr',2073,36521,2770,'5.0%',1260922,66],
-    ['bambi.com.tr',2052,7404,2791,'16.7%',205941,42],
-    ['bellona.com.tr',2010,45211,2833,'4.0%',1189178,56],
-    ['ikea.com.tr',1857,88337,2986,'1.9%',3833517,66],
-    ['isbiryatak.com',1591,3352,3252,'19.4%',89009,54],
-    ['puffy.com.tr',1582,3003,3261,'20.1%',122545,33],
-    ['idas.com.tr',1550,3213,3293,'19.2%',65286,50],
-    ['yatsan.com',1391,2867,3452,'18.0%',74721,43],
-    ['mondihome.com.tr',1170,12511,3673,'6.7%',233928,41],
-  ];
-  return rakipTable(rows, 'Lovayatak');
-}
-
-function render_07() {
-  const rows = [
-    ['kelebek.com',9688,9407,12964,'30.2%',294065,36],
-    ['istikbal.com.tr',13191,25403,9461,'27.4%',1260922,66],
-    ['enzahome.com.tr',8112,9592,14540,'25.1%',392036,39],
-    ['bellona.com.tr',13932,33289,8720,'24.9%',1189177,56],
-    ['mondihome.com.tr',7144,6537,15508,'24.4%',233929,41],
-    ['divanev.com.tr',6563,5018,16089,'23.7%',129582,35],
-    ['gundogdumobilya.com.tr',7132,7780,15520,'23.4%',197635,36],
-    ['modalife.com',6442,6528,16210,'22.0%',269384,33],
-    ['vivense.com',9178,26065,13474,'18.8%',1133138,64],
-    ['ikea.com.tr',11775,78419,10877,'11.6%',3833536,66],
-  ];
-  return rakipTable(rows, 'Dogtas');
-}
-
-// =====================================================================
-// TOP PAGES
-function topPagesTable(rows) {
-  const headers = ['URL','Trafik','KW Sayisi','Top Keyword','Top KW Volume','Top KW Poz'];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (ci === 0) return `<span class="url-pill">${c}</span>`;
-      if (ci === 1) return `<strong>${Number(c).toLocaleString('tr-TR')}</strong>`;
-      if (ci === 2 || ci === 4) return Number(c).toLocaleString('tr-TR');
-      if (ci === 5) return `<span class="${pozClass(c)}">${c}</span>`;
-      return c;
-    }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
-
-function render_08() {
-  const rows = [
-    ['kelebek.com/',111629,4772,'kelebek',94000,1],
-    ['/koltuk-takimlari',17726,2997,'bohem koltuk takimi',46000,5],
-    ['/yemek-odasi-takimi',12556,2215,'yemek odasi takimi',11000,3],
-    ['/yatak-odasi-takimi',10777,3448,'yatak odasi takimi',106000,12],
-    ['/mutfak-masa-takimi',8062,698,'mutfak masasi',33000,9],
-    ['/kose-takimi',6879,1820,'kose koltuk takimi',22000,11],
-    ['/tv-unite-takimi',6412,1008,'tv unitesi',68000,12],
-    ['/genc-odasi-takimlari',5012,1924,'kelebek',94000,1],
-    ['/blog-bohem-tarz-nedir',3760,60,'bohem',17000,4],
-    ['/yemek-odasi-lp',3016,579,'kelebek',94000,1],
-    ['/konsol',3013,131,'konsol',37000,6],
-    ['/blog-koltuk-nasil-silinir',2979,121,'koltuk neyle silinir',2100,1],
-    ['/dolap',2817,464,'kelebek gardirop',600,1],
-    ['/orta-sehpa',2707,220,'orta sehpa',36000,12],
-    ['/lambader',2128,69,'lambader',49000,11],
-    ['/sandalye-bench',2030,118,'sandalye',42000,12],
-    ['/acilir-masa',2009,198,'acilir kapanir masa',8300,6],
-    ['/makyaj-masasi',1817,50,'makyaj masasi',50000,8],
-    ['/bahce-seti',1724,96,'balkon takimi',33000,9],
-    ['/karyola',1648,197,'karyola yatak',3400,6],
-  ];
-  return topPagesTable(rows);
-}
-
-function render_09() {
-  const rows = [
-    ['lovayatak.com/',7662,853,'lova yatak',15000,1],
-    ['/blog-uykuya-dalma-yontemleri',3055,155,'uyuma taktikleri',1400,1],
-    ['/yatak',2948,1275,'yatak',40000,9],
-    ['/blog-siesta-uykusu-nedir',1746,39,'siesta ne demek',2700,1],
-    ['/blog-ani-uyku-bastirmasi',1648,206,'ani uyku bastirmasi',1900,1],
-    ['/blog-huzursuz-bacak',1410,57,'huzursuz bacak',4400,3],
-    ['/tek-kisilik-yataklar',1355,52,'tek kisilik yatak',26000,6],
-    ['/blog-neden-ruya-goruruz',1157,82,'neden ruya goruruz',700,1],
-    ['/blog-uykusuzlugun-zararlari',1067,48,'uykusuzlugun zararlari',400,1],
-    ['/cift-kisilik-nevresim-takimi',1000,39,'cift kisilik nevresim',15000,10],
-    ['/blog-uyku-acma-yontemleri',984,171,'uyku nasil acilir',3900,6],
-    ['/cift-kisilik-yataklar',946,71,'cift kisilik yatak',30000,7],
-    ['/blog-bebek-uyku-duzeni',934,176,'40 gunluk bebek',250,1],
-    ['/blog-kabus-nedir',814,83,'kotu ruya gormek',800,1],
-    ['/blog-lateks-yatak-nedir',772,25,'lateks yatak',5900,7],
-    ['/cift-kisilik-bazalar',769,120,'cift kisilik baza',6800,8],
-    ['/blog-ranforce-ne-demek',571,12,'ranforce ne demek',1500,3],
-    ['/battaniye',544,9,'battaniye',23000,10],
-    ['/baza-baslik',544,284,'baza baslik yatak',4900,11],
-    ['/blog-yatak-boyutlari',503,104,'1.5 kisilik yatak',2200,8],
-  ];
-  return topPagesTable(rows);
-}
-
-function render_10() {
-  const rows = [
-    ['dogtas.com/',79124,2461,'dogtas',75000,1],
-    ['/koltuk-takimlari',37484,2746,'koltuk takimi',151000,7],
-    ['/yatak-odasi-takimlari',28390,1452,'yatak odasi takimi',106000,3],
-    ['/kose-takimlari',15336,1441,'l koltuk takimi',27000,5],
-    ['/tv-unitesi-lp',11006,259,'tv unitesi',68000,4],
-    ['/tv-uniteleri',8743,876,'tv unitesi modelleri',8000,2],
-    ['/dolap',6859,1174,'dogtas gardrop',700,1],
-    ['/uclu-koltuklar',5113,377,'dogtas koltuk',7900,3],
-    ['/yemek-masalari',5101,794,'yemek masasi',35000,12],
-    ['/mutfak-masasi-takimi',4822,868,'mutfak masasi',33000,11],
-    ['/oturma-grubu',4533,352,'dogtas koltuk',7900,2],
-    ['/yemek-odasi-takimlari',4387,988,'dogtas yemek odasi',1600,1],
-    ['/genc-odasi-takimlari',3785,1081,'dogtas genc odasi',2200,1],
-    ['/konsol',3476,292,'konsol modelleri',16000,7],
-    ['/blog-dokuma-kumas-nedir',3206,26,'dokuma kumas nedir',9400,1],
-    ['/berjerler-ve-puflar',2985,496,'berjer',28000,12],
-    ['/dugun-paketleri',2879,178,'dugun paketi mobilya',6700,4],
-    ['/blog-gri-ile-uyumlu-renkler',2828,302,'gri renkler',5400,3],
-    ['/bahce-ve-balkon',2666,110,'balkon takimi',33000,10],
-    ['/blog-antrasit-renk-nedir',2508,149,'antrasit renk',22000,3],
-  ];
-  return topPagesTable(rows);
-}
-
-// =====================================================================
-// REFERRING DOMAINS
-function refDomTable(rows) {
-  const headers = ['Domain','DR','Dofollow Link','Toplam Link','Ilk Gorulme'];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (ci === 0) return `<strong>${c}</strong>`;
-      if (ci === 1) return drBar(c, '#3498DB');
-      return c;
-    }
-  };
-  return buildSortableTable(headers, rows, opts);
-}
-
-function render_12() {
-  const rows = [
-    ['youtube.com',99,1,4,'2026-01-23'],
-    ['wikipedia.org',97,0,1,'2025-09-22'],
-    ['waze.com',92,0,4,'2025-09-05'],
-    ['yandex.com',91,0,48,'2025-08-10'],
-    ['openedition.org',87,4,4,'2020-06-11'],
-    ['yandex.com.tr',86,0,272,'2025-08-06'],
-    ['angelfire.com',86,3,3,'2024-06-22'],
-    ['kariyer.net',84,0,1,'2025-03-29'],
-    ['milliyet.com.tr',84,0,2,'2020-06-30'],
-    ['iyzico.com',82,1,1,'2024-11-28'],
-    ['datanyze.com',78,0,1,'2025-08-28'],
-    ['eksisozluk.com',77,0,1,'2025-08-29'],
-    ['yenisafak.com',76,1,1,'2025-02-20'],
-    ['marketingturkiye.com.tr',68,3,3,'2024-01-25'],
-    ['tuyap.com.tr',67,2,2,'2025-01-18'],
-  ];
-  return refDomTable(rows);
-}
-
-function render_13() {
-  const rows = [
-    ['wixsite.com',94,2,2,'2026-01-22'],
-    ['yandex.com',91,0,12,'2025-08-11'],
-    ['yandex.com.tr',86,0,146,'2025-08-12'],
-    ['linkin.bio',83,1,1,'2025-10-19'],
-    ['indiehackers.com',80,5,5,'2024-06-09'],
-    ['seoagency.sale',76,0,2,'2025-12-14'],
-    ['storeleads.app',74,0,1,'2025-12-01'],
-    ['siteprice.org',72,0,6,'2025-07-14'],
-    ['tuyap.com.tr',67,1,1,'2025-01-18'],
-    ['mekan360.com',66,8,8,'2025-02-21'],
-    ['glarity.app',57,0,7,'2025-08-10'],
-    ['abcgazetesi.com.tr',56,0,4,'2025-04-08'],
-    ['konhaber.com',55,4,4,'2024-05-22'],
-    ['bonus.com.tr',54,0,2,'2025-08-10'],
-    ['medyaege.com.tr',54,4,4,'2024-05-27'],
-  ];
-  return refDomTable(rows);
-}
-
-function render_14() {
-  const rows = [
-    ['youtube.com',99,0,6,'2025-09-15'],
-    ['wikipedia.org',97,0,1,'2022-08-06'],
-    ['waze.com',92,0,4,'2025-02-10'],
-    ['yandex.com',91,0,12,'2025-08-20'],
-    ['google.com.tr',90,2,2,'2025-12-26'],
-    ['unglobalcompact.org',89,5,5,'2024-07-30'],
-    ['kompas.com',88,0,1,'2023-03-22'],
-    ['yandex.com.tr',86,0,546,'2025-08-07'],
-    ['angelfire.com',86,1,1,'2024-06-22'],
-    ['hurriyet.com.tr',85,0,4,'2025-10-04'],
-    ['milliyet.com.tr',84,0,1,'2022-04-16'],
-    ['iyzico.com',82,10,10,'2024-06-12'],
-    ['design-milk.com',81,2,2,'2024-07-10'],
-    ['eksisozluk.com',77,0,3,'2022-08-17'],
-    ['tim.org.tr',72,3,3,'2021-02-16'],
-  ];
-  return refDomTable(rows);
-}
-
-// =====================================================================
-// BACKLINK RAKİP ANALİZİ
-function backlinkRakipTable(rows) {
-  const headers = ['Domain','DR','Backlink','Dofollow BL','Refdomains','Dofollow RD','Org. Trafik','Org. KW','Durum'];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (ci === 0) return `<strong>${c}</strong>`;
-      if (ci === 1) return drBar(c, '#E74C3C');
-      if ([2,3,4,5,6,7].includes(ci)) return Number(c).toLocaleString('tr-TR');
-      if (ci === 8) {
-        const cls = c === 'Analiz Edilen' ? 'status-analiz' : 'status-rakip';
-        return `<span class="${cls}">${c}</span>`;
+    // Brand section headers: === ... ===
+    if (/^===.*===$/.test(line)) {
+      const title = line.replace(/^===\s*/, '').replace(/\s*===$/, '').trim();
+      if (/ORTAK|COMMON/i.test(title)) {
+        flushBrand();
+        inCommon = true;
+      } else {
+        flushBrand();
+        inCommon = false;
+        currentBrand = title;
       }
-      return c;
+      continue;
     }
+
+    if (inCommon) {
+      // Common strategies: tab-separated rows or plain lines
+      if (line.includes('\t')) {
+        const parts = line.split('\t');
+        commonItems.push(parts.join(' - '));
+      } else {
+        commonItems.push(line);
+      }
+    } else if (currentBrand !== null) {
+      // Strategy item rows: tab-separated
+      if (line.includes('\t')) {
+        const parts = line.split('\t');
+        // Skip header rows
+        if (parts[0].toLowerCase() === 'oncelik' || parts[0].toLowerCase() === 'alan') continue;
+        currentItems.push(parts);
+      } else {
+        // Plain text line under brand section
+        currentItems.push([line, '', '', '', '', '']);
+      }
+    }
+  }
+  flushBrand();
+
+  const brandColors = {
+    kelebek: '#E74C3C',
+    dogtas: '#2ECC71',
+    lovayatak: '#3498DB'
   };
-  return buildSortableTable(headers, rows, opts);
-}
+  const brandEmojis = {
+    kelebek: '\uD83D\uDD34',
+    dogtas: '\uD83D\uDFE2',
+    lovayatak: '\uD83D\uDD35'
+  };
 
-function render_18() {
-  const rows = [
-    ['kelebek.com',36,16467,11609,2024,1696,322106,17041,'Analiz Edilen'],
-    ['istikbal.com.tr',66,350435,326710,1472,923,1304238,34995,'Rakip'],
-    ['bellona.com.tr',56,189881,181771,1459,570,1178033,43411,'Rakip'],
-    ['dogtas.com',46,16756,11200,2641,2087,419560,19195,'Rakip'],
-    ['ikea.com.tr',66,160749,142928,1985,976,3708778,80120,'Rakip'],
-  ];
-  return backlinkRakipTable(rows);
-}
+  function etkiBadge(etki) {
+    const e = String(etki || '').trim();
+    const map = {
+      'Kritik': 'badge-kritik',
+      'Cok Yuksek': 'badge-cok-yuksek',
+      'Yuksek': 'badge-yuksek',
+      'Orta': 'badge-orta'
+    };
+    const cls = map[e] || 'badge-orta';
+    return e ? '<span class="badge ' + cls + '">' + escHtml(e) + '</span>' : '';
+  }
 
-function render_19() {
-  const rows = [
-    ['dogtas.com',46,16756,11200,2641,2087,419560,19195,'Analiz Edilen'],
-    ['kelebek.com',36,16467,11609,2024,1696,322106,17041,'Rakip'],
-    ['istikbal.com.tr',66,350435,326710,1472,923,1304238,34995,'Rakip'],
-    ['enzahome.com',31,27318,7803,440,185,2215,221,'Rakip'],
-    ['bellona.com.tr',56,189881,181771,1459,570,1178033,43411,'Rakip'],
-  ];
-  return backlinkRakipTable(rows);
-}
+  function getColor(name) {
+    const n = name.toLowerCase();
+    if (n.includes('kelebek')) return brandColors.kelebek;
+    if (n.includes('dogtas')) return brandColors.dogtas;
+    if (n.includes('lova')) return brandColors.lovayatak;
+    return '#34495E';
+  }
 
-function render_20() {
-  const rows = [
-    ['lovayatak.com',31,105075,103287,231,138,49958,4706,'Analiz Edilen'],
-    ['yatasbedding.com.tr',49,19096,11795,941,571,614187,13683,'Rakip'],
-    ['bambi.com.tr',42,16380,3428,769,250,234476,7960,'Rakip'],
-    ['isbiryatak.com.tr','0.6',18,2,14,2,0,0,'Rakip'],
-    ['puffy.com.tr',33,38544,38347,128,91,109988,4370,'Rakip'],
-  ];
-  return backlinkRakipTable(rows);
+  function getEmoji(name) {
+    const n = name.toLowerCase();
+    if (n.includes('kelebek')) return brandEmojis.kelebek;
+    if (n.includes('dogtas')) return brandEmojis.dogtas;
+    if (n.includes('lova')) return brandEmojis.lovayatak;
+    return '';
+  }
+
+  // If no === sections found, fall back to analysis text renderer
+  if (brandSections.length === 0 && commonItems.length === 0) {
+    return renderAnalysisText(text);
+  }
+
+  let html = '<div class="strategy-grid">';
+
+  brandSections.forEach(function(section) {
+    const color = getColor(section.name);
+    const emoji = getEmoji(section.name);
+    html += '<div class="strategy-section">';
+    html += '<div class="strategy-section-header" style="background:' + color + '">' + emoji + ' ' + escHtml(section.name) + '</div>';
+    html += '<div class="strategy-cards">';
+
+    section.items.forEach(function(parts, idx) {
+      // Expected columns: Oncelik | Alan | Mevcut Durum | Hedef | Aksiyon | Tahmini Etki
+      // But we handle any number of columns
+      const num = idx + 1;
+      let title = '', desc = '', etki = '';
+      if (Array.isArray(parts)) {
+        if (parts.length >= 5) {
+          // Oncelik, Alan, Mevcut, Hedef, Aksiyon, Etki
+          title = parts[1] || parts[0] || '';
+          desc = [parts[2], parts[3], parts[4]].filter(Boolean).join(' | ');
+          etki = parts[5] || '';
+        } else if (parts.length === 2) {
+          title = parts[0];
+          etki = parts[1];
+        } else {
+          title = parts[0];
+        }
+      } else {
+        title = String(parts);
+      }
+
+      html += '<div class="strategy-card">';
+      html += '<div class="strategy-card-top">';
+      html += '<div class="strategy-card-num" style="background:' + color + '">' + num + '</div>';
+      html += '<h4>' + escHtml(title) + '</h4>';
+      if (etki) html += etkiBadge(etki);
+      html += '</div>';
+      if (desc) html += '<p>' + escHtml(desc) + '</p>';
+      html += '</div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  if (commonItems.length > 0) {
+    html += '<div class="strategy-section">';
+    html += '<div class="strategy-section-header" style="background:#34495E">Ortak Stratejiler</div>';
+    html += '<div class="strategy-common"><ul>';
+    commonItems.forEach(function(item) {
+      html += '<li>' + escHtml(item) + '</li>';
+    });
+    html += '</ul></div></div>';
+  }
+
+  html += '</div>';
+  return html;
 }
 
 // =====================================================================
-// INTERNAL LINKS
-function internalLinkTable(rows) {
-  const headers = ['Sayfa URL','Internal Link Sayisi','Dofollow','Nofollow','Tur'];
-  const opts = {
-    renderCell: (c, ci) => {
-      if (ci === 0) return `<span class="url-pill">${c}</span>`;
-      if (ci === 1) return `<strong>${Number(c).toLocaleString('tr-TR')}</strong>`;
-      if (ci === 2 || ci === 3) return Number(c).toLocaleString('tr-TR');
-      return c;
+// CONTENT RENDERER
+// =====================================================================
+function renderParsed(docConfig, parsed) {
+  const filename = docConfig.file;
+  const { headers, rows, textContent } = parsed;
+
+  const isStrategy = filename.includes('24_strateji');
+
+  let contentHtml = '';
+
+  if (isStrategy) {
+    contentHtml = renderStrategyFile(parsed.raw || textContent);
+  } else {
+    // Table
+    if (headers.length > 0) {
+      contentHtml += buildTable(headers, rows);
     }
-  };
-  return buildSortableTable(headers, rows, opts);
+    // Analysis text
+    if (textContent && textContent.trim()) {
+      contentHtml += renderAnalysisText(textContent);
+    }
+    if (!contentHtml) {
+      contentHtml = '<div class="error-box"><strong>Veri bulunamadi</strong>Dosya bos veya tanimlanamayan bir formatta.</div>';
+    }
+  }
+
+  return contentHtml;
 }
 
-function render_21() {
-  const rows = [
-    ['/uye-giris',4552,4552,0,'Sitewide Nav'],
-    ['/',4551,4551,0,'Sitewide Nav'],
-    ['/kampanyalar',4546,4546,0,'Sitewide Nav'],
-    ['/magazalarimiz',4537,4537,0,'Sitewide Nav'],
-    ['/online-ozel',4533,4533,0,'Sitewide Nav'],
-    ['/hesabim/favori-listem',4529,4529,0,'Sitewide Nav'],
-    ['/yardim',4529,4529,0,'Sitewide Nav'],
-    ['/online-ozel-yatak-odalari',4529,4529,0,'Landing Page'],
-    ['/sepet',4529,4529,0,'Sitewide Nav'],
-    ['/online-ozel-genc-odalari',4528,4528,0,'Landing Page'],
-    ['/sandalye-bench',2304,2304,0,'Kategori Sayfasi'],
-    ['/en/tv-unit',2301,2301,0,'EN Kategori'],
-    ['/en/dining-room',2294,2294,0,'EN Kategori'],
-    ['/en/coffee-tables',2294,2294,0,'EN Kategori'],
-    ['/en/teen-room',2292,2292,0,'EN Kategori'],
-  ];
-  return internalLinkTable(rows);
+// =====================================================================
+// EXPORT HELPERS
+// =====================================================================
+function getCurrentTSV() {
+  const brand = BRANDS[currentBrand];
+  const doc = brand.docs.find(function(d) { return d.id === currentDocId; });
+  if (!doc || !cache.has(doc.file)) return { raw: '', file: doc ? doc.file : '' };
+  return { raw: cache.get(doc.file).raw, file: doc.file };
 }
 
-function render_22() {
-  const rows = [
-    ['/yatak',1330,1330,0,'Ana Kategori'],
-    ['/tumu-c-0',1309,1309,0,'Tum Urunler'],
-    ['/',1278,1278,0,'Anasayfa'],
-    ['/yastik-yorgan/yastik/',1277,1277,0,'Kategori'],
-    ['/iletisim/',1277,1277,0,'Sitewide Nav'],
-    ['/address/stores/',1275,1275,0,'Sitewide Nav'],
-    ['/ev-tekstili-kozmetik',1239,1239,0,'Kategori'],
-    ['/nevresim-takimlari',1239,1239,0,'Kategori'],
-    ['/yastik',1238,1238,0,'Kategori'],
-    ['/basliklar',1233,1233,0,'Kategori'],
-    ['/baza-baslik',1232,1232,0,'Kategori'],
-    ['/dekoratif-yastik',1232,1232,0,'Kategori'],
-    ['/banyo-tekstili',1231,1231,0,'Kategori'],
-    ['/dekoratif-puflar',1230,1230,0,'Kategori'],
-    ['/yatak-ortusu',1230,1230,0,'Kategori'],
-  ];
-  return internalLinkTable(rows);
+function downloadCSV() {
+  const { raw, file } = getCurrentTSV();
+  if (!raw) { showToast('Veri henuz yuklenmedi. Lutfen bekleyin.'); return; }
+
+  const lines = raw.split('\n');
+  const csvLines = lines.map(function(line) {
+    const cells = line.split('\t');
+    return cells.map(function(cell) {
+      const c = cell.replace(/"/g, '""');
+      return /[,"\n\r]/.test(c) ? '"' + c + '"' : c;
+    }).join(',');
+  });
+
+  const csvContent = csvLines.join('\n');
+  const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = file.replace('.tsv', '.csv');
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
-function render_23() {
-  const rows = [
-    ['/dogtas-home-lp',6308,6308,0,'Marka LP'],
-    ['/magazalarimiz',5422,5422,0,'Sitewide Nav'],
-    ['/kataloglar',5421,5421,0,'Sitewide Nav'],
-    ['/dogtas-genc-lp',5420,5420,0,'Marka LP'],
-    ['/yardim',5419,5419,0,'Sitewide Nav'],
-    ['/dogtas-garden-lp',5419,5419,0,'Marka LP'],
-    ['/',2921,2921,0,'Anasayfa'],
-    ['/koltuk-takimlari',2803,2803,0,'Kategori'],
-    ['/blog',2775,2775,0,'Blog Hub'],
-    ['/oturma-grubu',2773,2773,0,'Kategori'],
-    ['/kose-takimlari',2761,2761,0,'Kategori'],
-    ['/yatak-odasi-takimlari',2759,2759,0,'Kategori'],
-    ['/berjerler-ve-puflar',2757,2757,0,'Kategori'],
-    ['/yemek-odasi-takimlari',2756,2756,0,'Kategori'],
-    ['/tv-uniteleri',2746,2746,0,'Kategori'],
-  ];
-  return internalLinkTable(rows);
+function openInSheets() {
+  const { raw, file } = getCurrentTSV();
+  if (!raw) { showToast('Veri henuz yuklenmedi. Lutfen bekleyin.'); return; }
+
+  navigator.clipboard.writeText(raw).then(function() {
+    window.open('https://docs.google.com/spreadsheets/create', '_blank');
+    showToast('Veriler panoya kopyalandi. Yeni sayfada Ctrl+V ile yapistirin.');
+  }).catch(function() {
+    // Fallback: use textarea trick
+    const ta = document.createElement('textarea');
+    ta.value = raw;
+    ta.style.position = 'fixed';
+    ta.style.top = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    window.open('https://docs.google.com/spreadsheets/create', '_blank');
+    showToast('Veriler panoya kopyalandi. Yeni sayfada Ctrl+V ile yapistirin.');
+  });
+}
+
+// =====================================================================
+// TOAST
+// =====================================================================
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() {
+    el.classList.remove('show');
+  }, 4000);
 }
 
 // =====================================================================
@@ -1377,10 +1396,10 @@ let currentDocId = '01';
 
 function switchBrand(brand) {
   currentBrand = brand;
-  currentDocId = DATA[brand].docs[0].id;
+  currentDocId = BRANDS[brand].docs[0].id;
 
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.querySelector(`.nav-tab[data-brand="${brand}"]`).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelector('.nav-tab[data-brand="' + brand + '"]').classList.add('active');
 
   renderSidebar();
   renderContent();
@@ -1393,50 +1412,103 @@ function switchDoc(id) {
 }
 
 function renderSidebar() {
-  const brand = DATA[currentBrand];
+  const brand = BRANDS[currentBrand];
   const color = brand.color;
 
-  let kpiHtml = brand.kpis.map(k =>
-    `<div class="kpi-chip"><div class="kpi-val" style="color:${color}">${k.val}</div><div class="kpi-lbl">${k.lbl}</div></div>`
-  ).join('');
-
-  let docsHtml = brand.docs.map(doc => {
-    const active = doc.id === currentDocId ? 'active' : '';
-    return `<div class="sidebar-item ${active}" onclick="switchDoc('${doc.id}')">
-      <div class="doc-icon" style="background:${active ? color : 'rgba(255,255,255,0.07)'}">${doc.icon}</div>
-      <span class="doc-name">${doc.name}</span>
-      <span class="doc-id">${doc.id}</span>
-    </div>`;
+  const kpiHtml = brand.kpis.map(function(k) {
+    return '<div class="kpi-chip"><div class="kpi-val" style="color:' + color + '">' + escHtml(k.val) + '</div><div class="kpi-lbl">' + escHtml(k.lbl) + '</div></div>';
   }).join('');
 
-  document.getElementById('sidebar').innerHTML = `
-    <div class="sidebar-header">
-      <div class="sidebar-brand-label">Secili Marka</div>
-      <div class="sidebar-brand-name" style="color:${color}">${brand.label}</div>
-    </div>
-    <div class="sidebar-kpi">${kpiHtml}</div>
-    <div class="sidebar-docs">
-      <div class="sidebar-section-label">Belgeler</div>
-      ${docsHtml}
-    </div>
-  `;
+  const docsHtml = brand.docs.map(function(doc) {
+    const active = doc.id === currentDocId ? 'active' : '';
+    const iconBg = active ? color : 'rgba(255,255,255,0.07)';
+    return '<div class="sidebar-item ' + active + '" onclick="switchDoc(\'' + doc.id + '\')">' +
+      '<div class="doc-icon" style="background:' + iconBg + '">' + doc.icon + '</div>' +
+      '<span class="doc-name">' + escHtml(doc.name) + '</span>' +
+      '<span class="doc-id">' + doc.id + '</span>' +
+      '</div>';
+  }).join('');
+
+  document.getElementById('sidebar').innerHTML =
+    '<div class="sidebar-header">' +
+      '<div class="sidebar-brand-label">Secili Marka</div>' +
+      '<div class="sidebar-brand-name" style="color:' + color + '">' + escHtml(brand.label) + '</div>' +
+    '</div>' +
+    '<div class="sidebar-kpi">' + kpiHtml + '</div>' +
+    '<div class="sidebar-docs">' +
+      '<div class="sidebar-section-label">Belgeler</div>' +
+      docsHtml +
+    '</div>';
 }
 
 function renderContent() {
-  const brand = DATA[currentBrand];
-  const doc = brand.docs.find(d => d.id === currentDocId);
+  const brand = BRANDS[currentBrand];
+  const doc = brand.docs.find(function(d) { return d.id === currentDocId; });
   if (!doc) return;
 
   const color = brand.color;
-  const contentHtml = doc.render();
+  const badgeCls = currentBrand === 'lovayatak' ? 'badge-lovayatak' :
+                   currentBrand === 'kelebek' ? 'badge-kelebek' :
+                   currentBrand === 'dogtas' ? 'badge-dogtas' :
+                   currentBrand === 'rakipler' ? 'badge-rakipler' : 'badge-genel';
 
-  document.getElementById('main-content').innerHTML = `
-    <div class="content-header">
-      <h1><span class="brand-accent" style="background:${color}"></span>${doc.name}</h1>
-      <p><span class="badge badge-${currentBrand === 'lovayatak' ? 'lovayatak' : currentBrand === 'kelebek' ? 'kelebek' : currentBrand === 'dogtas' ? 'dogtas' : 'genel'}">${brand.label}</span> &nbsp; Belge #${doc.id}</p>
-    </div>
-    ${contentHtml}
-  `;
+  const headerHtml =
+    '<div class="content-header">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">' +
+        '<div>' +
+          '<h1><span class="brand-accent" style="background:' + color + '"></span>' + escHtml(doc.name) + '</h1>' +
+          '<p><span class="badge ' + badgeCls + '">' + escHtml(brand.label) + '</span> &nbsp; Belge #' + doc.id + '</p>' +
+        '</div>' +
+        '<div class="action-bar">' +
+          '<button class="action-btn sheets" onclick="openInSheets()">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none">' +
+              '<rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>' +
+              '<line x1="3" y1="9" x2="21" y2="9" stroke="currentColor" stroke-width="1.5"/>' +
+              '<line x1="3" y1="15" x2="21" y2="15" stroke="currentColor" stroke-width="1.5"/>' +
+              '<line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="1.5"/>' +
+              '<line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="1.5"/>' +
+            '</svg>' +
+            "Google Sheets'te Ac" +
+          '</button>' +
+          '<button class="action-btn csv" onclick="downloadCSV()">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+              '<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>' +
+              '<polyline points="7 10 12 15 17 10"/>' +
+              '<line x1="12" y1="15" x2="12" y2="3"/>' +
+            '</svg>' +
+            'CSV Indir' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+  const loadingHtml =
+    '<div class="loading">' +
+      '<div class="spinner"></div>' +
+      '<p>Veri yukleniyor...</p>' +
+    '</div>';
+
+  const main = document.getElementById('main-content');
+  main.innerHTML = headerHtml + loadingHtml;
+
+  loadDoc(doc.file).then(function(result) {
+    // Check if user navigated away
+    const currentDoc = BRANDS[currentBrand].docs.find(function(d) { return d.id === currentDocId; });
+    if (!currentDoc || currentDoc.file !== doc.file) return;
+
+    const contentHtml = renderParsed(doc, result.parsed);
+    main.innerHTML = headerHtml + contentHtml;
+  }).catch(function(err) {
+    const currentDoc = BRANDS[currentBrand].docs.find(function(d) { return d.id === currentDocId; });
+    if (!currentDoc || currentDoc.file !== doc.file) return;
+
+    main.innerHTML = headerHtml +
+      '<div class="error-box">' +
+        '<strong>Dosya yuklenemedi</strong>' +
+        'Hata: ' + escHtml(err.message) + '<br>' +
+        'Dosya yolu: <code>./seo-analiz/' + escHtml(doc.file) + '</code>' +
+      '</div>';
+  });
 }
 
 // Init
