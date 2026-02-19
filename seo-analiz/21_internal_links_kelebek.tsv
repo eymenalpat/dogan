@@ -1,0 +1,41 @@
+Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
+/uye-giris	4552	4552	0	Sitewide Nav
+/	4551	4551	0	Sitewide Nav
+/kampanyalar	4546	4546	0	Sitewide Nav
+/magazalarimiz	4537	4537	0	Sitewide Nav
+/online-ozel	4533	4533	0	Sitewide Nav
+/hesabim/favori-listem	4529	4529	0	Sitewide Nav
+/yardim	4529	4529	0	Sitewide Nav
+/online-ozel-yatak-odalari	4529	4529	0	Landing Page
+/sepet	4529	4529	0	Sitewide Nav
+/online-ozel-genc-odalari	4528	4528	0	Landing Page
+/online-ozel-dekoratif-aksesuar	4528	4528	0	Landing Page
+/online-ozel-calisma-odalari	4528	4528	0	Landing Page
+/online-ozel-mutfak	4528	4528	0	Landing Page
+/online-ozel-tv-unitesi	4528	4528	0	Landing Page
+/online-ozel-yemek-odalari	4528	4528	0	Landing Page
+/online-ozel-oturma-odalari	4528	4528	0	Landing Page
+/bayilik-basvuru-formu	4527	4527	0	Sitewide Nav
+/sandalye-bench	2304	2304	0	Kategori Sayfasi
+/en/tv-unit	2301	2301	0	EN Kategori
+/en/dining-room	2294	2294	0	EN Kategori
+/en/coffee-tables	2294	2294	0	EN Kategori
+/en/teen-room	2292	2292	0	EN Kategori
+/en/kitchen-tables-chairs	2291	2291	0	EN Kategori
+/en/by-series	2290	2290	0	EN Kategori
+/en/chairs-benches	2290	2290	0	EN Kategori
+/en/living-room	2290	2290	0	EN Kategori
+
+INTERNAL LINK ANALIZI
+Sorun	Aciklama
+Sitewide vs Kategori Farki	Sitewide sayfalar ~4530, kategori sayfalari ~2300 internal link aliyor. Kategori sayfalari 2x daha az link aliyor
+EN Sayfalarin Etkisi	Ingilizce sayfalar gereksiz yere ~2290 internal link aliyor. Bu link juice TR kategorilere yonlendirilmeli
+Eksik Kategori Sayfalari	Koltuk takimlari, yatak odasi, yemek odasi gibi ana kategoriler listede yok - daha fazla internal link almali
+Online Ozel Fazlaligi	7 farkli online-ozel sayfasi sitewide'da linklenmis - link juice dagiliyor
+
+OPTIMIZASYON ONERILERI
+1. Ana kategori sayfalarini (koltuk-takimlari, yatak-odasi-takimi, yemek-odasi-takimi) footer ve sidebar'a ekleyin
+2. EN sayfalara hreflang kullanin ama gereksiz internal linkleri azaltin
+3. Online-ozel sayfalarini tek bir hub sayfada toplayin
+4. Blog yazılarından kategori sayfalarına contextual internal link ekleyin
+5. Ürün sayfalarından ilgili kategori sayfalarına breadcrumb + related links ekleyin

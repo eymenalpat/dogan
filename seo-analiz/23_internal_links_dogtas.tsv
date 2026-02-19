@@ -1,0 +1,51 @@
+Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
+/dogtas-home-lp	6308	6308	0	Marka LP
+/magazalarimiz	5422	5422	0	Sitewide Nav
+/kataloglar	5421	5421	0	Sitewide Nav
+/dogtas-genc-lp	5420	5420	0	Marka LP
+/yardim	5419	5419	0	Sitewide Nav
+/dogtas-garden-lp	5419	5419	0	Marka LP
+/	2921	2921	0	Anasayfa
+/tr	2881	2881	0	TR Anasayfa
+/koltuk-takimlari	2803	2803	0	Kategori
+/blog	2775	2775	0	Blog Hub
+/oturma-grubu	2773	2773	0	Kategori
+/kose-takimlari	2761	2761	0	Kategori
+/yatak-odasi	2759	2759	0	Kategori
+/yatak-odasi-takimlari	2759	2759	0	Kategori
+/berjerler-ve-puflar	2757	2757	0	Kategori
+/yemek-odasi-takimlari	2756	2756	0	Kategori
+/yemek-masalari	2755	2755	0	Kategori
+/yemek-odasi	2750	2750	0	Kategori
+/tv-uniteleri	2746	2746	0	Kategori
+/mutfak-masasi-takimi	2744	2744	0	Kategori
+/sehpalar	2743	2743	0	Kategori
+/konsol-ayna	2739	2739	0	Kategori
+/kitaplik	2739	2739	0	Kategori
+/aynalar	2737	2737	0	Kategori
+/dogtas-genc-ve-cocuk-odasi	2736	2736	0	Kategori
+/genc-odasi-takimlari	2736	2736	0	Kategori
+/konsol	2736	2736	0	Kategori
+/sifonyer	2735	2735	0	Kategori
+/dolap	2734	2734	0	Kategori
+/sandalye-bank	2733	2733	0	Kategori
+
+INTERNAL LINK ANALIZI
+Guclu Yonler	Aciklama
+En Yuksek Hacim	6308 max internal link - 3 marka arasinda en yuksek
+Marka Alt-Sayfalari	dogtas-home, dogtas-genc, dogtas-garden LP'leri cok guclu linklenme
+Kategori Derinligi	20+ kategori sayfasi 2700+ internal link aliyor - mukemmel
+Blog Hub	/blog 2775 link ile guclu - blog stratejisi destekleniyor
+
+Zayif Yonler	Aciklama
+page-not-found	404 sayfasi 2788 link aliyor - link juice israf ediliyor!
+Cift Sayfa	/yatak-odasi ve /yatak-odasi-takimlari ayni anda var - cannibalization riski
+LP vs Kategori Farki	LP sayfalar (5400+) vs Kategoriler (2700+) - kategoriler daha fazla link almali
+
+OPTIMIZASYON ONERILERI
+1. ACIL: /page-not-found sayfasina giden 2788 internal linki tespit edip duzeltIn - buyuk link juice kaybi
+2. /yatak-odasi ve /yatak-odasi-takimlari birlestirilmeli veya canonical ile yonetilmeli
+3. /yemek-odasi ve /yemek-odasi-takimlari icin ayni durum - canonical veya redirect
+4. Blog yazılarından kategori sayfalarına daha fazla contextual link ekleyin
+5. Urun sayfalarindan related products ile cross-link yapisi kurun
+6. Marka LP sayfalarindan (6308 link) kategori sayfalarına link juice akisin artirin

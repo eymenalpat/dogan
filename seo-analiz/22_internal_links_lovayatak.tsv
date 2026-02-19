@@ -1,0 +1,49 @@
+Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
+/yatak	1330	1330	0	Ana Kategori
+/tumu-c-0	1309	1309	0	Tum Urunler
+/	1278	1278	0	Anasayfa
+/yastik-yorgan/yastik/	1277	1277	0	Kategori
+/iletisim/	1277	1277	0	Sitewide Nav
+/address/stores/	1275	1275	0	Sitewide Nav
+/ev-tekstili-kozmetik	1239	1239	0	Kategori
+/nevresim-takimlari	1239	1239	0	Kategori
+/yastik	1238	1238	0	Kategori
+/basliklar	1233	1233	0	Kategori
+/baza-baslik	1232	1232	0	Kategori
+/dekoratif-yastik	1232	1232	0	Kategori
+/banyo-tekstili	1231	1231	0	Kategori
+/dekoratif-puflar	1230	1230	0	Kategori
+/yatak-ortusu	1230	1230	0	Kategori
+/bazalar	1230	1230	0	Kategori
+/yastik-yorgan	1228	1228	0	Kategori
+/kokular	1228	1228	0	Kategori
+/alez	1228	1228	0	Kategori
+/yatakli-cozumler	1228	1228	0	Kategori
+/battaniye	1227	1227	0	Kategori
+/cift-kisilik-nevresim-takimi	1227	1227	0	Kategori
+/dekoratif-tekstil	1226	1226	0	Kategori
+/yorgan	1226	1226	0	Kategori
+/el-havlusu	1226	1226	0	Kategori
+/cift-kisilik-xl-nevresim-takimi	1225	1225	0	Kategori
+/yun-yorgan	1225	1225	0	Kategori
+/tamamlayici-aksesuarlar	1225	1225	0	Kategori
+/hrs-celik-yayli	1225	1225	0	Urun Tipi
+/sert	1225	1225	0	Urun Tipi
+
+INTERNAL LINK ANALIZI
+Guclu Yonler	Aciklama
+Dengeli Dagilim	Kategoriler arasi fark sadece ~100 link (1225-1330). Cok dengeli
+Yatak Odakli	/yatak en cok link alan kategori (1330) - ana urun odagi dogru
+Tam Navigasyon	Tum urun kategorileri sitede linklenmis
+
+Zayif Yonler	Aciklama
+Dusuk Toplam	En yuksek 1330 link - Dogtas 6308, Kelebek 4552. Toplam sayfa sayisi az
+Blog Eksikligi	Blog sayfalari listede yok - blog'dan kategori sayfalarina link verilmiyor
+Tek Seviye	Tum kategoriler benzer link sayisi aliyor - onemli kategoriler one cikarilmali
+
+OPTIMIZASYON ONERILERI
+1. /yatak sayfasina daha fazla internal link verin - ana gelir kaynagi
+2. Blog yazılarından (uyku taktikleri, yatak secimi vb) urun kategorilerine contextual link ekleyin
+3. Tek/cift kisilik yatak sayfalarini yatak ana sayfasindan daha belirgin linkleyin
+4. Cross-sell linkleri ekleyin: yatak > baza > baslik > nevresim > alez
+5. Sayfa sayisini artirin (urun sayfalari, karsilastirma sayfalari, rehber icerikler)

@@ -1,0 +1,29 @@
+Domain	DR	Backlink	Dofollow BL	Refdomains	Dofollow RD	Organik Trafik	Organik KW	Durum
+lovayatak.com	31	105075	103287	231	138	49958	4706	Analiz Edilen
+yatasbedding.com.tr	49	19096	11795	941	571	614187	13683	Rakip
+bambi.com.tr	42	16380	3428	769	250	234476	7960	Rakip
+isbiryatak.com.tr	0.6	18	2	14	2	0	0	Rakip (Yeni Domain?)
+puffy.com.tr	33	38544	38347	128	91	109988	4370	Rakip
+
+ANALIZ OZETI
+Metrik	Lovayatak	Ort. Rakip (Yatas+Bambi+Puffy)	Fark	Yorum
+DR	31	41.3	-10.3	DR dusuk - link building oncelik
+Backlink	105075	24673	+80402	Backlink sayisi cok yuksek AMA...
+Refdomains	231	613	-382	...sadece 231 domainden = SPAM RISKI
+Dofollow BL	103287	17857	+85430	%98 dofollow = dogal degil
+Dofollow RD	138	304	-166	Dofollow RD cok dusuk
+Org Trafik	49958	319550	-269592	Trafik ciddi sekilde geride
+Org KW	4706	8671	-3965	KW cesitliligi arttirilmali
+
+KRITIK UYARI - SPAM BACKLINK PROFILI
+Lovayatak 105K backlink / 231 refdomains = ortalama domain basina 455 link
+Bu oran normal degil ve Google Spam algosu tarafindan cezalandirma riski tasir
+Karsilastirma: Yatas 19K BL / 941 RD = domain basina 20 link (NORMAL)
+
+ONCELIKLI AKSIYON
+1. ACIL: Backlink Audit - 105K backlinkin kaynaklari incelenmeli, spam/toxic linkler tespit edilmeli
+2. ACIL: Disavow Dosyasi - Toxic linkler Google Disavow Tool ile reddedilmeli
+3. Refdomains Artirma: 231'den en az 500+'ya cikmali. Farkli domainlerden dogal link kazanimi
+4. DR Artirma: 31'den 40+'ya cikmak icin kaliteli backlink stratejisi
+5. Yatas Ana Rakip: DR 49, 941 RD, 614K trafik - en buyuk hedef
+6. Puffy Benzer Profil: 38K BL / 128 RD - benzer spam riski tasiyabilir
