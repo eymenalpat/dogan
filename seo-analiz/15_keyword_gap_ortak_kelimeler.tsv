@@ -21,15 +21,15 @@ l koltuk takımı	27000	10	5	-	Dogtas	Koltuk
 tek kişilik yatak	26000	-	-	6	Lovayatak	Yatak
 zigon sehpa	24000	11	-	-	Kelebek	Sehpa
 battaniye	23000	-	-	10	Lovayatak	Ev Tekstili
-kose koltuk takımı	22000	11	10	-	Dogtas	Koltuk
+köşe koltuk takımı	22000	11	10	-	Dogtas	Koltuk
 antrasit renk	22000	-	2	-	Dogtas	Blog
-boy aynasi	21000	10	12	-	Kelebek	Aksesuar
+boy aynası	21000	10	12	-	Kelebek	Aksesuar
 çeyiz listesi	21000	-	-	13	Lovayatak	Blog
 tv ünitesi modelleri	20000	-	5	-	Dogtas	TV Ünitesi
 masa sandalye takımı	20000	9	-	-	Kelebek	Masa
 bohem ne demek	19000	2	-	-	Kelebek	Blog
 salon takımı	18000	-	3	-	Dogtas	Koltuk
-kose takımı	18000	-	6	-	Dogtas	Koltuk
+köşe takımı	18000	-	6	-	Dogtas	Koltuk
 retro ne demek	18000	-	1	-	Dogtas	Blog
 bohem	17000	1	5	-	Kelebek	Blog
 mutfak masası takımı	17000	10	-	-	Kelebek	Masa
@@ -38,10 +38,10 @@ konsol modelleri	16000	11	7	-	Dogtas	Konsol
 yatak odası	16000	-	8	-	Dogtas	Yatak Odası
 çift kişilik nevresim takımı	15000	-	-	10	Lovayatak	Ev Tekstili
 chester koltuk	15000	9	-	-	Kelebek	Koltuk
-kose koltuk	15000	-	11	-	Dogtas	Koltuk
+köşe koltuk	15000	-	11	-	Dogtas	Koltuk
 koltuk takımı modelleri	15000	-	2	-	Dogtas	Koltuk
-yatak ortusu	15000	-	-	11	Lovayatak	Ev Tekstili
-polyester kumas	14000	-	1	-	Dogtas	Blog
+yatak örtüsü	15000	-	-	11	Lovayatak	Ev Tekstili
+polyester kumaş	14000	-	1	-	Dogtas	Blog
 salıncak	14000	-	5	-	Dogtas	Bahçe
 sandalye modelleri	14000	11	-	-	Kelebek	Sandalye
 televizyon ünitesi	14000	-	5	-	Dogtas	TV Ünitesi
@@ -50,7 +50,7 @@ orta sehpa modelleri	13000	10	-	-	Kelebek	Sehpa
 yuvarlak masa	12000	8	-	-	Kelebek	Masa
 tekli koltuk	12000	8	-	-	Kelebek	Koltuk
 chester koltuk takımı	12000	-	7	-	Dogtas	Koltuk
-yatak basligi	12000	-	-	12	Lovayatak	Yatak
+yatak başlığı	12000	-	-	12	Lovayatak	Yatak
 puf koltuk	11000	6	-	-	Kelebek	Koltuk
 yemek odası takımı	11000	3	-	-	Kelebek	Yemek Odası
 komidin	11000	7	-	-	Kelebek	Yatak Odası
@@ -59,12 +59,12 @@ koltuk takımları	11000	-	7	-	Dogtas	Koltuk
 2025 koltuk modelleri	9700	4	3	-	Dogtas	Koltuk
 mobilya markalari	9700	7	-	-	Kelebek	Genel
 mutfak masa takımı	9700	8	10	-	Kelebek	Masa
-dokuma kumas nedir	9400	-	1	-	Dogtas	Blog
+dokuma kumaş nedir	9400	-	1	-	Dogtas	Blog
 bebek odası takımı	9400	11	-	-	Kelebek	Çocuk Odası
-saksi cicekleri	9100	-	5	-	Dogtas	Blog
+saksı çiçekleri	9100	-	5	-	Dogtas	Blog
 çift kişilik yatak ölçüleri	8900	-	-	10	Lovayatak	Blog
 açılır kapanır masa	8300	6	8	-	Kelebek	Masa
-polyester kumas nedir	8300	-	2	-	Dogtas	Blog
+polyester kumaş nedir	8300	-	2	-	Dogtas	Blog
 yatak odası takımı fiyatları	8200	5	8	-	Kelebek	Yatak Odası
 koltuk takımı fiyatları	8200	-	6	-	Dogtas	Koltuk
 yeni trend salon dekorasyonu	8100	5	7	-	Kelebek	Blog
@@ -74,8 +74,8 @@ bar masası	7400	9	5	-	Dogtas	Masa
 ikili koltuk	7100	12	11	-	Dogtas	Koltuk
 tek kişilik yatak ölçüleri	6900	-	3	-	Dogtas	Blog
 çift kişilik baza başlık yatak	6800	-	-	8	Lovayatak	Yatak
-spor kose takımı modelleri	6800	-	6	-	Dogtas	Koltuk
-dugun paketi mobilya	6700	-	4	-	Dogtas	Paket
+spor köşe takımı modelleri	6800	-	6	-	Dogtas	Koltuk
+düğün paketi mobilya	6700	-	4	-	Dogtas	Paket
 l koltuk modelleri	6600	7	6	-	Dogtas	Koltuk
 masa takımı	6600	6	-	-	Kelebek	Masa
 yemek masası sandalyesi	6500	6	7	-	Kelebek	Sandalye
@@ -84,11 +84,11 @@ kullanışlı küçük banyo modelleri	6500	-	4	-	Dogtas	Blog
 uyku seti	6400	-	-	6	Lovayatak	Yatak
 lateks yatak	5900	-	-	7	Lovayatak	Yatak
 yan sehpa	5900	5	-	-	Kelebek	Sehpa
-mavi isik	5900	-	-	5	Lovayatak	Blog
+mavi ışık	5900	-	-	5	Lovayatak	Blog
 gri ile uyumlu renkler	5400	-	3	-	Dogtas	Blog
 kahverengi ile uyumlu renkler	5200	1	-	-	Kelebek	Blog
 salon koltuk takımı	5200	3	4	-	Kelebek	Koltuk
-yatak ortusu çift kişilik	5300	-	-	6	Lovayatak	Ev Tekstili
+yatak örtüsü çift kişilik	5300	-	-	6	Lovayatak	Ev Tekstili
 unite modelleri	5100	-	2	-	Dogtas	TV Ünitesi
 yuvarlak yemek masası	4900	-	5	-	Dogtas	Masa
 mobilya takımı	4900	-	3	-	Dogtas	Koltuk
@@ -99,10 +99,10 @@ giyinme odası	8200	3	-	-	Kelebek	Dolap
 çift kişilik yatak fiyatları	4400	-	-	6	Lovayatak	Yatak
 huzursuz bacak sendromundan kurtuldum	4400	-	-	3	Lovayatak	Blog
 bahçe salıncağı	4100	9	-	-	Kelebek	Bahçe
-uyku nasil açılır	3900	-	-	6	Lovayatak	Blog
+uyku nasıl açılır	3900	-	-	6	Lovayatak	Blog
 6 kapaklı gardırop	3900	6	-	-	Kelebek	Dolap
 bohem tarz	3600	1	-	-	Kelebek	Blog
 yatak alezi	3600	-	-	6	Lovayatak	Ev Tekstili
 alez nedir	3600	-	-	3	Lovayatak	Blog
 tek kişilik yatak fiyatları	3400	-	-	6	Lovayatak	Yatak
-leke tutmayan koltuk kumaslari	3500	-	4	-	Dogtas	Blog
+leke tutmayan koltuk kumaşları	3500	-	4	-	Dogtas	Blog
