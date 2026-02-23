@@ -1589,32 +1589,58 @@ function openInSheets() {
   const { raw, file } = getCurrentTSV();
   if (!raw) { showToast('Veri henüz yüklenmedi. Lütfen bekleyin.'); return; }
 
-  // Convert TSV to CSV
-  const lines = raw.split('\n');
-  const csvLines = lines.map(line => {
-    const cells = line.split('\t');
-    return cells.map(cell => {
-      const c = cell.replace(/"/g, '""');
-      return /[,"\n\r]/.test(c) ? '"' + c + '"' : c;
-    }).join(',');
+  // Build HTML table from TSV - Google Sheets pastes HTML tables perfectly
+  const tsvLines = raw.split('\n').filter(function(l) { return l.trim() !== ''; });
+  var htmlTable = '<meta charset="utf-8"><table>';
+  tsvLines.forEach(function(line, i) {
+    var cells = line.split('\t');
+    var tag = i === 0 ? 'th' : 'td';
+    htmlTable += '<tr>';
+    cells.forEach(function(c) {
+      htmlTable += '<' + tag + '>' + c.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</' + tag + '>';
+    });
+    htmlTable += '</tr>';
   });
-  const csvContent = csvLines.join('\n');
+  htmlTable += '</table>';
 
-  // Create CSV blob and generate object URL
-  const blob = new Blob(['\uFEFF' + csvContent], {type: 'text/csv;charset=utf-8;'});
-  const csvUrl = URL.createObjectURL(blob);
+  var brand = BRANDS[currentBrand];
+  var doc = brand.docs.find(function(d) { return d.id === currentDocId; });
+  var docName = doc ? doc.name : '';
+  var sheetTitle = encodeURIComponent('Doğanlar Mobilya - ' + docName);
 
-  // Copy raw TSV to clipboard for paste method
-  navigator.clipboard.writeText(raw).catch(function(){});
+  // Try modern Clipboard API with HTML (best for Sheets paste)
+  if (navigator.clipboard && navigator.clipboard.write && typeof ClipboardItem !== 'undefined') {
+    var htmlBlob = new Blob([htmlTable], { type: 'text/html' });
+    var textBlob = new Blob([raw], { type: 'text/plain' });
+    navigator.clipboard.write([
+      new ClipboardItem({
+        'text/html': htmlBlob,
+        'text/plain': textBlob
+      })
+    ]).then(function() {
+      window.open('https://docs.google.com/spreadsheets/create?title=' + sheetTitle, '_blank');
+      showToast('Veriler panoya kopyalandı. Sheets açılınca A1 hücresine tıklayıp Ctrl+V (⌘+V) yapın - tablo otomatik yerleşecek.');
+    }).catch(function() {
+      // Fallback to plain text copy
+      fallbackCopyAndOpen(raw, sheetTitle);
+    });
+  } else {
+    fallbackCopyAndOpen(raw, sheetTitle);
+  }
+}
 
-  // Open Google Sheets with title
-  const brand = BRANDS[currentBrand];
-  const doc = brand.docs.find(d => d.id === currentDocId);
-  const docName = doc ? doc.name : '';
-  const sheetTitle = encodeURIComponent('Doğanlar Mobilya - ' + docName);
+function fallbackCopyAndOpen(raw, sheetTitle) {
+  // Fallback: copy as plain text via textarea
+  var ta = document.createElement('textarea');
+  ta.value = raw;
+  ta.style.position = 'fixed';
+  ta.style.top = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
   window.open('https://docs.google.com/spreadsheets/create?title=' + sheetTitle, '_blank');
-
-  showToast('Google Sheets açıldı. Veriler panoya kopyalandı - sayfada Ctrl+V (⌘+V) ile yapıştırın. Sekme adını "Doğanlar Mobilya" olarak ayarlayın.');
+  showToast('Veriler panoya kopyalandı. Sheets açılınca A1 hücresine tıklayıp Ctrl+V (⌘+V) yapın.');
 }
 
 // =====================================================================
