@@ -12,7 +12,7 @@ doğtaş yatak odası	5000	1	2437	0	3	https://www.dogtas.com/yatak-odasi	Brand	Y
 çocuk odası	25000	5	1985	1	6	https://www.dogtas.com/genc-ve-cocuk-odasi	Quick Win	Genç / Çocuk Odası	I/C
 doğtaş genç odası	2200	1	1978	0	3	https://www.dogtas.com/genc-ve-cocuk-odasi-takimlari	Brand	Genç / Çocuk Odası	I/C
 doğtaş köşe takımı	3200	1	1860	0	4	https://www.dogtas.com/kose-takimlari	Brand	Koltuk / Oturma	I/C
-dogtas	2200	1	1807	3	3	https://www.dogtas.com/tr	Brand	Diğer	I/C
+doğtaş	2200	1	1807	3	3	https://www.dogtas.com/tr	Brand	Diğer	I/C
 doğtaş koltuk	3200	2	1681	1	4	https://www.dogtas.com/koltuk-takimlari	Brand	Koltuk / Oturma	I/C
 doğtaş orta sehpa	1900	1	1611	0	3	https://www.dogtas.com/sehpalar	Brand	Sehpa / Konsol	I/C
 l koltuk	55000	11	1496	2	6	https://www.dogtas.com/kose-takimlari	Quick Win	Koltuk / Oturma	I/C
@@ -72,7 +72,7 @@ doğtaş çalışma masası	500	1	421	0	5	https://www.dogtas.com/genc-ve-cocuk-o
 pati dostu kumaş	1200	1	421	0	8	https://www.dogtas.com/pati-dostu-kumas-urunleri	Long-Tail	Koltuk / Oturma	I/C
 doğtaş costa koltuk takımı	600	1	416	0		https://www.dogtas.com/bohem-costa-koltuk-takimi	Brand	Koltuk / Oturma	I/C
 konsol modelleri	17000	11	401	0	3	https://www.dogtas.com/konsollar	Quick Win	Sehpa / Konsol	I/C
-dogtas mobilya	1200	1	400	1	4	https://www.dogtas.com/tr	Brand	Diğer	I/C
+doğtaş mobilya	1200	1	400	1	4	https://www.dogtas.com/tr	Brand	Diğer	I/C
 doğtaş kanepe	400	1	399	0	4	https://www.dogtas.com/yatakli-koltuklar	Brand	Koltuk / Oturma	I/C
 salon masa sandalye takımı doğtaş	450	1	396	1	5	https://www.dogtas.com/yemek-masalari	Brand	Masa / Sandalye	I/C
 köşe koltuk	14000	12	393	2	7	https://www.dogtas.com/kose-takimlari	Quick Win	Koltuk / Oturma	I/C/T

@@ -6,7 +6,7 @@ isbiryatak.com.tr	0.6	18	2	14	2	0	0	Rakip (Yeni Domain?)
 puffy.com.tr	33	38544	38347	128	91	109988	4370	Rakip
 
 ANALİZ ÖZETİ
-Metrik	Lovayatak	Ort. Rakip (Yatas+Bambi+Puffy)	Fark	Yorum
+Metrik	Lovayatak	Ort. Rakip (Yataş+Bambi+Puffy)	Fark	Yorum
 DR	31	41.3	-10.3	DR düşük - link building önerilir
 Backlink	105075	24673	+80402	Backlink sayısı çok yüksek AMA...
 Refdomains	231	613	-382	...sadece 231 domainden = SPAM RISKI
@@ -18,12 +18,12 @@ Org KW	4706	8671	-3965	KW çeşitliliği artırılması önerilir
 KRİTİK UYARI - SPAM BACKLINK PROFILI
 Lovayatak 105K backlink / 231 refdomains = ortalama domain başına 455 link
 Bu oran normal değil ve Google Spam algosu tarafından cezalandırma riski taşır
-Karşılaştırma: Yatas 19K BL / 941 RD = domain başına 20 link (NORMAL)
+Karşılaştırma: Yataş 19K BL / 941 RD = domain başına 20 link (NORMAL)
 
 ÖNCELİKLİ AKSİYON
 1. ACİL: Backlink Audit - 105K backlinkin kaynakları incelenmesi önerilir, spam/toxic linkler tespit edilmesi önerilir
 2. ACİL: Disavow Dosyası - Toxic linkler Google Disavow Tool ile reddedilmesi önerilir
 3. Refdomains Artırma: 231'den en az 500+'ya çıkmalı. Farkli domainlerden doğal link kazanımı
 4. DR Artırma: 31'den 40+'ya çıkmak için kaliteli backlink stratejisi
-5. Yatas Ana Rakip: DR 49, 941 RD, 614K trafik - en büyük hedef
+5. Yataş Ana Rakip: DR 49, 941 RD, 614K trafik - en büyük hedef
 6. Puffy Benzer Profil: 38K BL / 128 RD - benzer spam riski taşıyabilir
