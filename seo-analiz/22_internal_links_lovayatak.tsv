@@ -1,6 +1,6 @@
-Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
+Sayfa URL	Internal Link Sayısı	Dofollow	Nofollow	Tür
 /yatak	1330	1330	0	Ana Kategori
-/tumu-c-0	1309	1309	0	Tum Urunler
+/tumu-c-0	1309	1309	0	Tüm Urunler
 /	1278	1278	0	Anasayfa
 /yastik-yorgan/yastik/	1277	1277	0	Kategori
 /iletisim/	1277	1277	0	Sitewide Nav
@@ -27,23 +27,23 @@ Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
 /cift-kisilik-xl-nevresim-takimi	1225	1225	0	Kategori
 /yun-yorgan	1225	1225	0	Kategori
 /tamamlayici-aksesuarlar	1225	1225	0	Kategori
-/hrs-celik-yayli	1225	1225	0	Urun Tipi
-/sert	1225	1225	0	Urun Tipi
+/hrs-celik-yayli	1225	1225	0	Ürün Tipi
+/sert	1225	1225	0	Ürün Tipi
 
-INTERNAL LINK ANALIZI
-Guclu Yonler	Aciklama
-Dengeli Dagilim	Kategoriler arasi fark sadece ~100 link (1225-1330). Cok dengeli
-Yatak Odakli	/yatak en cok link alan kategori (1330) - ana urun odagi dogru
-Tam Navigasyon	Tum urun kategorileri sitede linklenmis
+INTERNAL LINK ANALİZİ
+Güçlü Yönler	Açıklama
+Dengeli Dağılım	Kategoriler arası fark sadece ~100 link (1225-1330). Çok dengeli
+Yatak Odaklı	/yatak en cok link alan kategori (1330) - ana urun odagi dogru
+Tam Navigasyon	Tüm ürün kategorileri sitede linklenmiş
 
-Zayif Yonler	Aciklama
-Dusuk Toplam	En yuksek 1330 link - Dogtas 6308, Kelebek 4552. Toplam sayfa sayisi az
-Blog Eksikligi	Blog sayfalari listede yok - blog'dan kategori sayfalarina link verilmiyor
-Tek Seviye	Tum kategoriler benzer link sayisi aliyor - onemli kategoriler one cikarilmali
+Zayıf Yönler	Açıklama
+Düşük Toplam	En yüksek 1330 link - Dogtas 6308, Kelebek 4552. Toplam sayfa sayısı az
+Blog Eksikliği	Blog sayfaları listede yok - blog'dan kategori sayfalarına link verilmiyor
+Tek Seviye	Tüm kategoriler benzer link sayısı alıyor - önemli kategoriler öne çıkarılmalı
 
-OPTIMIZASYON ONERILERI
-1. /yatak sayfasina daha fazla internal link verin - ana gelir kaynagi
-2. Blog yazılarından (uyku taktikleri, yatak secimi vb) urun kategorilerine contextual link ekleyin
-3. Tek/cift kisilik yatak sayfalarini yatak ana sayfasindan daha belirgin linkleyin
-4. Cross-sell linkleri ekleyin: yatak > baza > baslik > nevresim > alez
-5. Sayfa sayisini artirin (urun sayfalari, karsilastirma sayfalari, rehber icerikler)
+OPTİMİZASYON ÖNERİLERİ
+1. /yatak sayfasına daha fazla internal link verilmesi önerilir - ana gelir kaynağı
+2. Blog yazılarından (uyku taktikleri, yatak seçimi vb) ürün kategorilerine contextual link eklenmesi önerilir
+3. Tek/cift kisilik yatak sayfalarını yatak ana sayfasından daha belirgin linklenmesi önerilir
+4. Cross-sell linkleri eklenmesi önerilir: yatak > baza > baslik > nevresim > alez
+5. Sayfa sayısını artırılması önerilir (ürün sayfaları, karşılaştırma sayfaları, rehber içerikler)

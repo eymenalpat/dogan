@@ -1,4 +1,4 @@
-Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
+Sayfa URL	Internal Link Sayısı	Dofollow	Nofollow	Tür
 /uye-giris	4552	4552	0	Sitewide Nav
 /	4551	4551	0	Sitewide Nav
 /kampanyalar	4546	4546	0	Sitewide Nav
@@ -16,7 +16,7 @@ Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
 /online-ozel-yemek-odalari	4528	4528	0	Landing Page
 /online-ozel-oturma-odalari	4528	4528	0	Landing Page
 /bayilik-basvuru-formu	4527	4527	0	Sitewide Nav
-/sandalye-bench	2304	2304	0	Kategori Sayfasi
+/sandalye-bench	2304	2304	0	Kategori Sayfası
 /en/tv-unit	2301	2301	0	EN Kategori
 /en/dining-room	2294	2294	0	EN Kategori
 /en/coffee-tables	2294	2294	0	EN Kategori
@@ -26,16 +26,16 @@ Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
 /en/chairs-benches	2290	2290	0	EN Kategori
 /en/living-room	2290	2290	0	EN Kategori
 
-INTERNAL LINK ANALIZI
-Sorun	Aciklama
-Sitewide vs Kategori Farki	Sitewide sayfalar ~4530, kategori sayfalari ~2300 internal link aliyor. Kategori sayfalari 2x daha az link aliyor
-EN Sayfalarin Etkisi	Ingilizce sayfalar gereksiz yere ~2290 internal link aliyor. Bu link juice TR kategorilere yonlendirilmeli
-Eksik Kategori Sayfalari	Koltuk takimlari, yatak odasi, yemek odasi gibi ana kategoriler listede yok - daha fazla internal link almali
-Online Ozel Fazlaligi	7 farkli online-ozel sayfasi sitewide'da linklenmis - link juice dagiliyor
+INTERNAL LINK ANALİZİ
+Sorun	Açıklama
+Sitewide vs Kategori Farkı	Sitewide sayfalar ~4530, kategori sayfaları ~2300 internal link alıyor. Kategori sayfaları 2x daha az link alıyor
+EN Sayfaların Etkisi	İngilizce sayfalar gereksiz yere ~2290 internal link alıyor. Bu link juice TR kategorilere yönlendirilmesi önerilir
+Eksik Kategori Sayfaları	Koltuk takımları, yatak odasi, yemek odasi gibi ana kategoriler listede yok - daha fazla internal link almalı
+Online Özel Fazlalığı	7 farklı online-ozel sayfası sitewide'da linklenmiş - link juice dağılıyor
 
-OPTIMIZASYON ONERILERI
-1. Ana kategori sayfalarini (koltuk-takimlari, yatak-odasi-takimi, yemek-odasi-takimi) footer ve sidebar'a ekleyin
-2. EN sayfalara hreflang kullanin ama gereksiz internal linkleri azaltin
-3. Online-ozel sayfalarini tek bir hub sayfada toplayin
-4. Blog yazılarından kategori sayfalarına contextual internal link ekleyin
-5. Ürün sayfalarından ilgili kategori sayfalarına breadcrumb + related links ekleyin
+OPTİMİZASYON ÖNERİLERİ
+1. Ana kategori sayfalarını (koltuk-takımları, yatak-odasi-takimi, yemek-odasi-takimi) footer ve sidebar'a eklenmesi önerilir
+2. EN sayfalara hreflang kullanın ama gereksiz internal linkleri azaltılması değerlendirilebilir
+3. Online-ozel sayfalarını tek bir hub sayfada toplanması önerilir
+4. Blog yazılarından kategori sayfalarına contextual internal link eklenmesi önerilir
+5. Ürün sayfalarından ilgili kategori sayfalarına breadcrumb + related links eklenmesi önerilir

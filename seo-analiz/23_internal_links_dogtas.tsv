@@ -1,4 +1,4 @@
-Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
+Sayfa URL	Internal Link Sayısı	Dofollow	Nofollow	Tür
 /dogtas-home-lp	6308	6308	0	Marka LP
 /magazalarimiz	5422	5422	0	Sitewide Nav
 /kataloglar	5421	5421	0	Sitewide Nav
@@ -30,22 +30,22 @@ Sayfa URL	Internal Link Sayisi	Dofollow	Nofollow	Tur
 /dolap	2734	2734	0	Kategori
 /sandalye-bank	2733	2733	0	Kategori
 
-INTERNAL LINK ANALIZI
-Guclu Yonler	Aciklama
-En Yuksek Hacim	6308 max internal link - 3 marka arasinda en yuksek
-Marka Alt-Sayfalari	dogtas-home, dogtas-genc, dogtas-garden LP'leri cok guclu linklenme
-Kategori Derinligi	20+ kategori sayfasi 2700+ internal link aliyor - mukemmel
+INTERNAL LINK ANALİZİ
+Güçlü Yönler	Açıklama
+En Yüksek Hacim	6308 max internal link - 3 marka arasında en yüksek
+Marka Alt-Sayfaları	dogtas-home, dogtas-genc, dogtas-garden LP'leri çok güçlü linklenme
+Kategori Derinliği	20+ kategori sayfası 2700+ internal link alıyor - mükemmel
 Blog Hub	/blog 2775 link ile guclu - blog stratejisi destekleniyor
 
-Zayif Yonler	Aciklama
-page-not-found	404 sayfasi 2788 link aliyor - link juice israf ediliyor!
-Cift Sayfa	/yatak-odasi ve /yatak-odasi-takimlari ayni anda var - cannibalization riski
-LP vs Kategori Farki	LP sayfalar (5400+) vs Kategoriler (2700+) - kategoriler daha fazla link almali
+Zayıf Yönler	Açıklama
+page-not-found	404 sayfası 2788 link alıyor - link juice israf ediliyor!
+Çift Sayfa	/yatak-odasi ve /yatak-odasi-takimlari ayni anda var - cannibalization riski
+LP vs Kategori Farkı	LP sayfalar (5400+) vs Kategoriler (2700+) - kategoriler daha fazla link almalı
 
-OPTIMIZASYON ONERILERI
-1. ACIL: /page-not-found sayfasina giden 2788 internal linki tespit edip duzeltIn - buyuk link juice kaybi
-2. /yatak-odasi ve /yatak-odasi-takimlari birlestirilmeli veya canonical ile yonetilmeli
-3. /yemek-odasi ve /yemek-odasi-takimlari icin ayni durum - canonical veya redirect
-4. Blog yazılarından kategori sayfalarına daha fazla contextual link ekleyin
-5. Urun sayfalarindan related products ile cross-link yapisi kurun
-6. Marka LP sayfalarindan (6308 link) kategori sayfalarına link juice akisin artirin
+OPTİMİZASYON ÖNERİLERİ
+1. ACIL: /page-not-found sayfasına giden 2788 internal linki tespit edip düzeltin - büyük link juice kaybı
+2. /yatak-odasi ve /yatak-odasi-takımları birleştirilmesi önerilir veya canonical ile yönetilmesi önerilir
+3. /yemek-odasi ve /yemek-odasi-takımları için aynı durum - canonical veya redirect
+4. Blog yazılarından kategori sayfalarına daha fazla contextual link eklenmesi önerilir
+5. Ürün sayfalarından related products ile cross-link yapısı kurulması önerilir
+6. Marka LP sayfalarından (6308 link) kategori sayfalarına link juice akışın artırılması önerilir

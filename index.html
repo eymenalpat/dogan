@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doganlar Mobilya - SEO Analiz Paneli</title>
+<title>Doğanlar Mobilya - SEO Analiz Paneli</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -179,13 +179,6 @@
     opacity: 0.75;
   }
   .sidebar-item.active .doc-icon { opacity: 1; }
-  .doc-id {
-    font-size: 10px;
-    color: rgba(255,255,255,0.25);
-    margin-left: auto;
-    flex-shrink: 0;
-    font-family: monospace;
-  }
 
   /* MAIN CONTENT */
   main {
@@ -276,6 +269,7 @@
     cursor: pointer;
     user-select: none;
     transition: background 0.15s;
+    position: relative;
   }
   .table-wrap thead th:hover { background: #243342; }
   .table-wrap thead th .sort-icon { opacity: 0.4; margin-left: 4px; font-size: 10px; }
@@ -288,6 +282,22 @@
   .table-wrap tbody tr:hover { background: #EEF4FF; }
   .table-wrap tbody td { padding: 11px 16px; color: var(--text-primary); vertical-align: middle; }
   .table-wrap tbody td:first-child { font-weight: 600; }
+
+  /* COLUMN RESIZER */
+  .col-resizer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: col-resize;
+    user-select: none;
+    z-index: 1;
+  }
+  .col-resizer:hover,
+  .col-resizer.resizing {
+    background: rgba(52, 152, 219, 0.4);
+  }
 
   /* BADGES */
   .badge {
@@ -399,6 +409,41 @@
   .analysis-card-body .kv-key { font-weight: 600; min-width: 160px; color: var(--text-secondary); }
   .analysis-card-body .kv-val { color: var(--text-primary); flex: 1; }
 
+  /* ANALYSIS SUB-TABLE */
+  .analysis-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 8px 0;
+  }
+  .analysis-table thead {
+    background: #F0F4F8;
+  }
+  .analysis-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border);
+  }
+  .analysis-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .analysis-table tr:last-child td {
+    border-bottom: none;
+  }
+  .analysis-table .positive {
+    color: #1E8449;
+    font-weight: 600;
+  }
+  .analysis-table .negative {
+    color: #C0392B;
+    font-weight: 600;
+  }
+
   /* URL pill */
   .url-pill {
     display: inline-block;
@@ -408,9 +453,6 @@
     padding: 2px 6px;
     font-family: monospace;
     font-size: 11px;
-    max-width: 220px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
     vertical-align: middle;
   }
@@ -501,7 +543,7 @@
   @media (max-width: 680px) {
     .nav-brand span { display: none; }
     aside { width: 60px; }
-    .sidebar-item .doc-name, .doc-id, .sidebar-brand-label, .sidebar-brand-name, .kpi-chip .kpi-lbl, .kpi-chip .kpi-val, .sidebar-section-label { display: none; }
+    .sidebar-item .doc-name, .sidebar-brand-label, .sidebar-brand-name, .kpi-chip .kpi-lbl, .kpi-chip .kpi-val, .sidebar-section-label { display: none; }
     .sidebar-kpi { display: none; }
     .sidebar-docs { padding: 10px 4px; }
     .sidebar-item { justify-content: center; padding: 12px; }
@@ -542,6 +584,42 @@
   .filter-reset-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid #E74C3C; background: #FDECEA; color: #C0392B; cursor: pointer; font-size: 11px; font-weight: 600; font-family: inherit; display: none; }
   .filter-reset-btn.show { display: inline-flex; }
 
+  /* EXPAND TOGGLE (referring domains) */
+  .expand-toggle {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: none;
+    background: none;
+    font-size: 10px;
+    color: var(--text-secondary);
+    transition: all 0.15s;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+  .expand-toggle:hover { background: #EEF4FF; color: #2471A3; }
+  .expand-toggle.open { transform: rotate(90deg); }
+  .slug-row { display: none; }
+  .slug-row.open { display: table-row; }
+  .slug-row td {
+    padding: 6px 16px 6px 48px !important;
+    background: #F8FAFC !important;
+    font-size: 12px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+  .slug-url {
+    display: block;
+    font-family: monospace;
+    font-size: 11px;
+    color: #2471A3;
+    padding: 2px 0;
+  }
+
   /* Footer */
   footer {
     background: var(--nav-bg);
@@ -557,12 +635,12 @@
 <body>
 
 <nav>
-  <div class="nav-brand">Doganlar Mobilya <span>SEO Analiz Paneli</span></div>
+  <div class="nav-brand">Doğanlar Mobilya <span>SEO Analiz Paneli</span></div>
   <div class="nav-tabs">
     <button class="nav-tab active" data-brand="genel" onclick="switchBrand('genel')">Genel</button>
     <button class="nav-tab" data-brand="kelebek" onclick="switchBrand('kelebek')">Kelebek</button>
     <button class="nav-tab" data-brand="lovayatak" onclick="switchBrand('lovayatak')">Lovayatak</button>
-    <button class="nav-tab" data-brand="dogtas" onclick="switchBrand('dogtas')">Dogtas</button>
+    <button class="nav-tab" data-brand="dogtas" onclick="switchBrand('dogtas')">Doğtaş</button>
     <button class="nav-tab" data-brand="rakipler" onclick="switchBrand('rakipler')">Rakipler</button>
   </div>
 </nav>
@@ -572,7 +650,7 @@
   <main id="main-content"></main>
 </div>
 
-<footer>SEO Analiz Raporu | Subat 2026</footer>
+<footer>SEO Analiz Raporu | Şubat 2026</footer>
 
 <div class="toast" id="toast"></div>
 
@@ -591,79 +669,79 @@ const BRANDS = {
     ],
     docs: [
       {id:'01', name:'Genel Metrikler', icon:'\uD83D\uDCCA', file:'01_genel_metrikler_karsilastirma.tsv'},
-      {id:'11', name:'Backlink Karsilastirma', icon:'\uD83D\uDD17', file:'11_backlink_karsilastirma.tsv'},
+      {id:'11', name:'Backlink Karşılaştırma', icon:'\uD83D\uDD17', file:'11_backlink_karsilastirma.tsv'},
       {id:'15', name:'Keyword Gap', icon:'\uD83D\uDD0D', file:'15_keyword_gap_ortak_kelimeler.tsv'},
-      {id:'16', name:'Rakipler Arasi Gap', icon:'\uD83D\uDCC8', file:'16_rakipler_arasi_gap_ozet.tsv'},
-      {id:'17', name:'Kategori Karsilastirma', icon:'\uD83D\uDCCB', file:'17_kategori_sayfasi_dr_karsilastirma.tsv'},
-      {id:'24', name:'Strateji Onerileri', icon:'\uD83C\uDFAF', file:'24_strateji_onerileri.tsv'},
-      {id:'31', name:'Tum KW Cluster', icon:'🔎', file:'31_tum_kwler_cluster.tsv'},
-      {id:'32', name:'Kategori Karsilastirma', icon:'📊', file:'32_kategori_bazli_karsilastirma.tsv'},
+      {id:'16', name:'Rakipler Arası Gap', icon:'\uD83D\uDCC8', file:'16_rakipler_arasi_gap_ozet.tsv'},
+      {id:'17', name:'Kategori Karşılaştırma', icon:'\uD83D\uDCCB', file:'17_kategori_sayfasi_dr_karsilastirma.tsv'},
+      {id:'24', name:'Strateji Önerileri', icon:'\uD83C\uDFAF', file:'24_strateji_onerileri.tsv'},
+      {id:'31', name:'Tüm KW Cluster', icon:'🔎', file:'31_tum_kwler_cluster.tsv'},
+      {id:'32', name:'Kategori Karşılaştırma', icon:'📊', file:'32_kategori_bazli_karsilastirma.tsv'},
     ]
   },
   kelebek: {
     label: 'kelebek.com', color: '#E74C3C',
     kpis: [
       {val:'DR 36', lbl:'Domain Rating'},
-      {val:'314K', lbl:'Aylik Trafik'},
+      {val:'314K', lbl:'Aylık Trafik'},
       {val:'16.7K', lbl:'Organik KW'},
       {val:'2,024', lbl:'Ref Domain'}
     ],
     docs: [
-      {id:'02', name:'KW Arastirmasi', icon:'\uD83D\uDD0D', file:'02_kw_arastirmasi_kelebek.tsv'},
-      {id:'05', name:'Rakip Arastirmasi', icon:'\uD83D\uDC65', file:'05_rakip_arastirmasi_kelebek.tsv'},
+      {id:'02', name:'KW Araştırması', icon:'\uD83D\uDD0D', file:'02_kw_arastirmasi_kelebek.tsv'},
+      {id:'05', name:'Rakip Araştırması', icon:'\uD83D\uDC65', file:'05_rakip_arastirmasi_kelebek.tsv'},
       {id:'08', name:'Top Pages', icon:'\uD83D\uDCC4', file:'08_top_pages_kelebek.tsv'},
       {id:'12', name:'Referring Domains', icon:'\uD83D\uDD17', file:'12_referring_domains_kelebek.tsv'},
       {id:'18', name:'Backlink Rakip Analizi', icon:'\uD83D\uDCC8', file:'18_backlink_rakip_kelebek.tsv'},
       {id:'21', name:'Internal Link Analizi', icon:'\uD83D\uDDFA\uFE0F', file:'21_internal_links_kelebek.tsv'},
-      {id:'25', name:'Detayli KW Analizi', icon:'🎯', file:'25_kw_detayli_kelebek.tsv'},
+      {id:'25', name:'Detaylı KW Analizi', icon:'🎯', file:'25_kw_detayli_kelebek.tsv'},
     ]
   },
   lovayatak: {
     label: 'lovayatak.com', color: '#3498DB',
     kpis: [
       {val:'DR 31', lbl:'Domain Rating'},
-      {val:'49.5K', lbl:'Aylik Trafik'},
+      {val:'49.5K', lbl:'Aylık Trafik'},
       {val:'4,655', lbl:'Organik KW'},
       {val:'231', lbl:'Ref Domain'}
     ],
     docs: [
-      {id:'03', name:'KW Arastirmasi', icon:'\uD83D\uDD0D', file:'03_kw_arastirmasi_lovayatak.tsv'},
-      {id:'06', name:'Rakip Arastirmasi', icon:'\uD83D\uDC65', file:'06_rakip_arastirmasi_lovayatak.tsv'},
+      {id:'03', name:'KW Araştırması', icon:'\uD83D\uDD0D', file:'03_kw_arastirmasi_lovayatak.tsv'},
+      {id:'06', name:'Rakip Araştırması', icon:'\uD83D\uDC65', file:'06_rakip_arastirmasi_lovayatak.tsv'},
       {id:'09', name:'Top Pages', icon:'\uD83D\uDCC4', file:'09_top_pages_lovayatak.tsv'},
       {id:'13', name:'Referring Domains', icon:'\uD83D\uDD17', file:'13_referring_domains_lovayatak.tsv'},
       {id:'20', name:'Backlink Rakip Analizi', icon:'\uD83D\uDCC8', file:'20_backlink_rakip_lovayatak.tsv'},
       {id:'22', name:'Internal Link Analizi', icon:'\uD83D\uDDFA\uFE0F', file:'22_internal_links_lovayatak.tsv'},
-      {id:'27', name:'Detayli KW Analizi', icon:'🎯', file:'27_kw_detayli_lovayatak.tsv'},
+      {id:'27', name:'Detaylı KW Analizi', icon:'🎯', file:'27_kw_detayli_lovayatak.tsv'},
     ]
   },
   dogtas: {
     label: 'dogtas.com', color: '#2ECC71',
     kpis: [
       {val:'DR 46', lbl:'Domain Rating'},
-      {val:'410K', lbl:'Aylik Trafik'},
+      {val:'410K', lbl:'Aylık Trafik'},
       {val:'18.1K', lbl:'Organik KW'},
       {val:'2,641', lbl:'Ref Domain'}
     ],
     docs: [
-      {id:'04', name:'KW Arastirmasi', icon:'\uD83D\uDD0D', file:'04_kw_arastirmasi_dogtas.tsv'},
-      {id:'07', name:'Rakip Arastirmasi', icon:'\uD83D\uDC65', file:'07_rakip_arastirmasi_dogtas.tsv'},
+      {id:'04', name:'KW Araştırması', icon:'\uD83D\uDD0D', file:'04_kw_arastirmasi_dogtas.tsv'},
+      {id:'07', name:'Rakip Araştırması', icon:'\uD83D\uDC65', file:'07_rakip_arastirmasi_dogtas.tsv'},
       {id:'10', name:'Top Pages', icon:'\uD83D\uDCC4', file:'10_top_pages_dogtas.tsv'},
       {id:'14', name:'Referring Domains', icon:'\uD83D\uDD17', file:'14_referring_domains_dogtas.tsv'},
       {id:'19', name:'Backlink Rakip Analizi', icon:'\uD83D\uDCC8', file:'19_backlink_rakip_dogtas.tsv'},
       {id:'23', name:'Internal Link Analizi', icon:'\uD83D\uDDFA\uFE0F', file:'23_internal_links_dogtas.tsv'},
-      {id:'26', name:'Detayli KW Analizi', icon:'🎯', file:'26_kw_detayli_dogtas.tsv'},
+      {id:'26', name:'Detaylı KW Analizi', icon:'🎯', file:'26_kw_detayli_dogtas.tsv'},
     ]
   },
   rakipler: {
     label: 'Rakipler', color: '#9B59B6',
     kpis: [
       {val:'3', lbl:'Rakip'},
-      {val:'Istikbal', lbl:'#1 Rakip'},
+      {val:'İstikbal', lbl:'#1 Rakip'},
       {val:'Bellona', lbl:'#2 Rakip'},
       {val:'Yatas', lbl:'#3 Rakip'}
     ],
     docs: [
-      {id:'28', name:'Istikbal KW', icon:'🏢', file:'28_rakip_kw_istikbal.tsv'},
+      {id:'28', name:'İstikbal KW', icon:'🏢', file:'28_rakip_kw_istikbal.tsv'},
       {id:'29', name:'Bellona KW', icon:'🏢', file:'29_rakip_kw_bellona.tsv'},
       {id:'30', name:'Yatas KW', icon:'🏢', file:'30_rakip_kw_yatas.tsv'},
     ]
@@ -827,11 +905,17 @@ function renderCellAuto(value, colType, colHeader) {
 // =====================================================================
 let tableCounter = 0;
 
-function buildTable(headers, rows) {
-  if (!headers || headers.length === 0) return '<p style="color:var(--text-secondary);font-size:13px;padding:12px">Tablo verisi bulunamadi.</p>';
+function buildTable(headers, rows, filename) {
+  if (!headers || headers.length === 0) return '<p style="color:var(--text-secondary);font-size:13px;padding:12px">Tablo verisi bulunamadı.</p>';
 
   const id = 'tbl_' + (++tableCounter);
   const colTypes = headers.map(h => detectColType(h));
+
+  // Detect if this is a referring_domains file
+  const isRefDomains = filename && filename.includes('referring_domains');
+
+  // Find "Top Sayfalar" column index if present
+  const topSayfalarIdx = headers.findIndex(h => /top\s*sayfa/i.test(h));
 
   const state = { sortCol: -1, sortDir: 1, filters: {} };
 
@@ -915,7 +999,7 @@ function buildTable(headers, rows) {
       html += '</div></div></div>';
     });
 
-    html += '<button class="filter-reset-btn' + (hasActiveFilters() ? ' show' : '') + '" id="freset_' + id + '">Tum Filtreleri Temizle</button>';
+    html += '<button class="filter-reset-btn' + (hasActiveFilters() ? ' show' : '') + '" id="freset_' + id + '">Tüm Filtreleri Temizle</button>';
     html += '</div>';
     return html;
   }
@@ -925,20 +1009,43 @@ function buildTable(headers, rows) {
     const thead = headers.map((h, i) => {
       let cls = '';
       if (i === state.sortCol) cls = state.sortDir === 1 ? 'sorted-asc' : 'sorted-desc';
-      return '<th class="' + cls + '" data-col="' + i + '">' + escHtml(h) + '<span class="sort-icon"></span></th>';
+      return '<th class="' + cls + '" data-col="' + i + '">' + escHtml(h) + '<span class="sort-icon"></span><div class="col-resizer" data-col="' + i + '"></div></th>';
     }).join('');
 
-    const tbody = data.map(r => {
-      const cells = headers.map((h, ci) => {
+    let tbody = '';
+    data.forEach((r, rowIdx) => {
+      let cells = '';
+      headers.forEach((h, ci) => {
+        // Skip the "Top Sayfalar" column from inline rendering (it's shown in slug-row)
+        if (isRefDomains && ci === topSayfalarIdx) return;
         const val = r[ci] !== undefined ? r[ci] : '';
-        const rendered = renderCellAuto(val, colTypes[ci], h);
-        return '<td' + (ci === 0 ? ' style="font-weight:600"' : '') + '>' + rendered + '</td>';
-      }).join('');
-      return '<tr>' + cells + '</tr>';
-    }).join('');
+        let rendered = renderCellAuto(val, colTypes[ci], h);
+        if (isRefDomains && ci === 0) {
+          // Add expand toggle to first column (domain name)
+          const slugRowId = 'slug_' + id + '_' + rowIdx;
+          rendered = '<button class="expand-toggle" data-slug-row="' + slugRowId + '">&#9654;</button>' + rendered;
+        }
+        cells += '<td' + (ci === 0 ? ' style="font-weight:600"' : '') + '>' + rendered + '</td>';
+      });
+      tbody += '<tr>' + cells + '</tr>';
+
+      // Slug sub-row for referring domains
+      if (isRefDomains) {
+        const slugRowId = 'slug_' + id + '_' + rowIdx;
+        const colSpan = topSayfalarIdx >= 0 ? headers.length - 1 : headers.length;
+        let slugContent = '';
+        if (topSayfalarIdx >= 0 && r[topSayfalarIdx] && r[topSayfalarIdx].trim() && r[topSayfalarIdx].trim() !== '-') {
+          const urls = r[topSayfalarIdx].split('|').map(u => u.trim()).filter(Boolean);
+          slugContent = urls.map(u => '<span class="slug-url">' + escHtml(u) + '</span>').join('');
+        } else {
+          slugContent = '<span style="color:var(--text-secondary);font-style:italic">Veri mevcut değil</span>';
+        }
+        tbody += '<tr class="slug-row" id="' + slugRowId + '"><td colspan="' + colSpan + '">' + slugContent + '</td></tr>';
+      }
+    });
 
     const countInfo = hasActiveFilters() ?
-      '<div style="padding:8px 16px;font-size:11px;color:var(--text-secondary);background:#F8F9FA;border-bottom:1px solid var(--border)">' + data.length + ' / ' + rows.length + ' sonuc gosteriliyor</div>' : '';
+      '<div style="padding:8px 16px;font-size:11px;color:var(--text-secondary);background:#F8F9FA;border-bottom:1px solid var(--border)">' + data.length + ' / ' + rows.length + ' sonuç gösteriliyor</div>' : '';
 
     return countInfo + '<table id="' + id + '"><thead><tr>' + thead + '</tr></thead><tbody>' + tbody + '</tbody></table>';
   }
@@ -957,17 +1064,82 @@ function buildTable(headers, rows) {
       attachFilterListeners();
     }
     attachSortListeners();
+    attachResizeListeners();
+    attachExpandListeners();
   }
 
   function attachSortListeners() {
     const wrap = document.getElementById('wrap_' + id);
     if (!wrap) return;
     wrap.querySelectorAll('thead th').forEach(th => {
-      th.addEventListener('click', () => {
+      th.addEventListener('click', (e) => {
+        // Don't sort when clicking resizer
+        if (e.target.classList.contains('col-resizer')) return;
         const col = parseInt(th.getAttribute('data-col'));
         if (state.sortCol === col) state.sortDir *= -1;
         else { state.sortCol = col; state.sortDir = 1; }
         fullRerender();
+      });
+    });
+  }
+
+  function attachResizeListeners() {
+    const wrap = document.getElementById('wrap_' + id);
+    if (!wrap) return;
+    wrap.querySelectorAll('.col-resizer').forEach(resizer => {
+      resizer.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const th = resizer.closest('th');
+        const colIdx = parseInt(resizer.getAttribute('data-col'));
+        const startX = e.clientX;
+        const startWidth = th.offsetWidth;
+
+        resizer.classList.add('resizing');
+
+        function onMouseMove(me) {
+          const newWidth = Math.max(40, startWidth + (me.clientX - startX));
+          th.style.width = newWidth + 'px';
+          // Also set the corresponding tbody td widths via col elements
+          const tbl = document.getElementById(id);
+          if (tbl) {
+            tbl.querySelectorAll('tbody tr').forEach(row => {
+              const tds = row.querySelectorAll('td:not([colspan])');
+              if (tds[colIdx]) tds[colIdx].style.minWidth = newWidth + 'px';
+            });
+          }
+        }
+
+        function onMouseUp() {
+          resizer.classList.remove('resizing');
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+      });
+    });
+  }
+
+  function attachExpandListeners() {
+    if (!isRefDomains) return;
+    const wrap = document.getElementById('wrap_' + id);
+    if (!wrap) return;
+    wrap.querySelectorAll('.expand-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const slugRowId = btn.getAttribute('data-slug-row');
+        const slugRow = document.getElementById(slugRowId);
+        if (!slugRow) return;
+        const isOpen = slugRow.classList.contains('open');
+        if (isOpen) {
+          slugRow.classList.remove('open');
+          btn.classList.remove('open');
+        } else {
+          slugRow.classList.add('open');
+          btn.classList.add('open');
+        }
       });
     });
   }
@@ -1045,6 +1217,8 @@ function buildTable(headers, rows) {
 
   setTimeout(() => {
     attachSortListeners();
+    attachResizeListeners();
+    attachExpandListeners();
     attachFilterListeners();
   }, 0);
 
@@ -1099,17 +1273,72 @@ function renderAnalysisText(textContent) {
     }
     if (sec.items.length > 0) {
       html += '<div class="analysis-card-body">';
-      // Detect if items are key-value (tab-separated)
+
+      // Detect if items are tab-separated
       const hasKV = sec.items.some(function(it) { return it.includes('\t'); });
+
       if (hasKV) {
-        sec.items.forEach(function(item) {
-          const parts = item.split('\t');
-          if (parts.length >= 2) {
-            html += '<div class="kv-row"><span class="kv-key">' + escHtml(parts[0]) + '</span><span class="kv-val">' + escHtml(parts.slice(1).join(' ')) + '</span></div>';
+        // Check if this looks like a sub-table (avg 3+ tabs per row = 4+ columns)
+        const tabCounts = sec.items.map(it => (it.match(/\t/g) || []).length);
+        const avgTabs = tabCounts.reduce((a, b) => a + b, 0) / tabCounts.length;
+        const isSubTable = avgTabs >= 3;
+
+        if (isSubTable) {
+          // Render as a comparison table
+          const firstParts = sec.items[0].split('\t');
+          // Heuristic: if first row looks like a header (contains known header keywords)
+          const firstRowText = sec.items[0].toLowerCase();
+          const looksLikeHeader = /metrik|fark|yorum|karsilastirma|karşılaştırma|alan|deger|değer/.test(firstRowText);
+
+          html += '<table class="analysis-table">';
+          if (looksLikeHeader) {
+            html += '<thead><tr>';
+            firstParts.forEach(p => {
+              html += '<th>' + escHtml(p.trim()) + '</th>';
+            });
+            html += '</tr></thead><tbody>';
+            sec.items.slice(1).forEach(item => {
+              const parts = item.split('\t');
+              html += '<tr>';
+              parts.forEach((p) => {
+                const trimmed = p.trim();
+                let cls = '';
+                if (trimmed.startsWith('+')) cls = ' class="positive"';
+                else if (trimmed.startsWith('-') && !isNaN(parseFloat(trimmed.replace(/[^0-9.-]/g, '')))) cls = ' class="negative"';
+                html += '<td' + cls + '>' + escHtml(trimmed) + '</td>';
+              });
+              html += '</tr>';
+            });
+            html += '</tbody>';
           } else {
-            html += '<div class="kv-row">' + escHtml(item) + '</div>';
+            // No clear header row - render all rows as body
+            html += '<tbody>';
+            sec.items.forEach(item => {
+              const parts = item.split('\t');
+              html += '<tr>';
+              parts.forEach((p) => {
+                const trimmed = p.trim();
+                let cls = '';
+                if (trimmed.startsWith('+')) cls = ' class="positive"';
+                else if (trimmed.startsWith('-') && !isNaN(parseFloat(trimmed.replace(/[^0-9.-]/g, '')))) cls = ' class="negative"';
+                html += '<td' + cls + '>' + escHtml(trimmed) + '</td>';
+              });
+              html += '</tr>';
+            });
+            html += '</tbody>';
           }
-        });
+          html += '</table>';
+        } else {
+          // Standard key-value rendering
+          sec.items.forEach(function(item) {
+            const parts = item.split('\t');
+            if (parts.length >= 2) {
+              html += '<div class="kv-row"><span class="kv-key">' + escHtml(parts[0]) + '</span><span class="kv-val">' + escHtml(parts.slice(1).join(' ')) + '</span></div>';
+            } else {
+              html += '<div class="kv-row">' + escHtml(item) + '</div>';
+            }
+          });
+        }
       } else {
         html += '<ul>';
         sec.items.forEach(function(item) {
@@ -1303,14 +1532,14 @@ function renderParsed(docConfig, parsed) {
   } else {
     // Table
     if (headers.length > 0) {
-      contentHtml += buildTable(headers, rows);
+      contentHtml += buildTable(headers, rows, filename);
     }
     // Analysis text
     if (textContent && textContent.trim()) {
       contentHtml += renderAnalysisText(textContent);
     }
     if (!contentHtml) {
-      contentHtml = '<div class="error-box"><strong>Veri bulunamadi</strong>Dosya bos veya tanimlanamayan bir formatta.</div>';
+      contentHtml = '<div class="error-box"><strong>Veri bulunamadı</strong>Dosya boş veya tanımlanamayan bir formatta.</div>';
     }
   }
 
@@ -1329,7 +1558,7 @@ function getCurrentTSV() {
 
 function downloadCSV() {
   const { raw, file } = getCurrentTSV();
-  if (!raw) { showToast('Veri henuz yuklenmedi. Lutfen bekleyin.'); return; }
+  if (!raw) { showToast('Veri henüz yüklenmedi. Lütfen bekleyin.'); return; }
 
   const lines = raw.split('\n');
   const csvLines = lines.map(function(line) {
@@ -1354,24 +1583,34 @@ function downloadCSV() {
 
 function openInSheets() {
   const { raw, file } = getCurrentTSV();
-  if (!raw) { showToast('Veri henuz yuklenmedi. Lutfen bekleyin.'); return; }
+  if (!raw) { showToast('Veri henüz yüklenmedi. Lütfen bekleyin.'); return; }
 
-  navigator.clipboard.writeText(raw).then(function() {
-    window.open('https://docs.google.com/spreadsheets/create', '_blank');
-    showToast('Veriler panoya kopyalandi. Yeni sayfada Ctrl+V ile yapistirin.');
-  }).catch(function() {
-    // Fallback: use textarea trick
-    const ta = document.createElement('textarea');
-    ta.value = raw;
-    ta.style.position = 'fixed';
-    ta.style.top = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    window.open('https://docs.google.com/spreadsheets/create', '_blank');
-    showToast('Veriler panoya kopyalandi. Yeni sayfada Ctrl+V ile yapistirin.');
+  // Convert TSV to CSV
+  const lines = raw.split('\n');
+  const csvLines = lines.map(line => {
+    const cells = line.split('\t');
+    return cells.map(cell => {
+      const c = cell.replace(/"/g, '""');
+      return /[,"\n\r]/.test(c) ? '"' + c + '"' : c;
+    }).join(',');
   });
+  const csvContent = csvLines.join('\n');
+
+  // Create CSV blob and generate object URL
+  const blob = new Blob(['\uFEFF' + csvContent], {type: 'text/csv;charset=utf-8;'});
+  const csvUrl = URL.createObjectURL(blob);
+
+  // Copy raw TSV to clipboard for paste method
+  navigator.clipboard.writeText(raw).catch(function(){});
+
+  // Open Google Sheets with title
+  const brand = BRANDS[currentBrand];
+  const doc = brand.docs.find(d => d.id === currentDocId);
+  const docName = doc ? doc.name : '';
+  const sheetTitle = encodeURIComponent('Doğanlar Mobilya - ' + docName);
+  window.open('https://docs.google.com/spreadsheets/create?title=' + sheetTitle, '_blank');
+
+  showToast('Google Sheets açıldı. Veriler panoya kopyalandı - sayfada Ctrl+V (⌘+V) ile yapıştırın. Sekme adını "Doğanlar Mobilya" olarak ayarlayın.');
 }
 
 // =====================================================================
@@ -1425,13 +1664,12 @@ function renderSidebar() {
     return '<div class="sidebar-item ' + active + '" onclick="switchDoc(\'' + doc.id + '\')">' +
       '<div class="doc-icon" style="background:' + iconBg + '">' + doc.icon + '</div>' +
       '<span class="doc-name">' + escHtml(doc.name) + '</span>' +
-      '<span class="doc-id">' + doc.id + '</span>' +
       '</div>';
   }).join('');
 
   document.getElementById('sidebar').innerHTML =
     '<div class="sidebar-header">' +
-      '<div class="sidebar-brand-label">Secili Marka</div>' +
+      '<div class="sidebar-brand-label">Seçili Marka</div>' +
       '<div class="sidebar-brand-name" style="color:' + color + '">' + escHtml(brand.label) + '</div>' +
     '</div>' +
     '<div class="sidebar-kpi">' + kpiHtml + '</div>' +
@@ -1457,7 +1695,7 @@ function renderContent() {
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">' +
         '<div>' +
           '<h1><span class="brand-accent" style="background:' + color + '"></span>' + escHtml(doc.name) + '</h1>' +
-          '<p><span class="badge ' + badgeCls + '">' + escHtml(brand.label) + '</span> &nbsp; Belge #' + doc.id + '</p>' +
+          '<p><span class="badge ' + badgeCls + '">' + escHtml(brand.label) + '</span></p>' +
         '</div>' +
         '<div class="action-bar">' +
           '<button class="action-btn sheets" onclick="openInSheets()">' +
@@ -1468,7 +1706,7 @@ function renderContent() {
               '<line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="1.5"/>' +
               '<line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="1.5"/>' +
             '</svg>' +
-            "Google Sheets'te Ac" +
+            "Google Sheets'te Aç" +
           '</button>' +
           '<button class="action-btn csv" onclick="downloadCSV()">' +
             '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
@@ -1476,7 +1714,7 @@ function renderContent() {
               '<polyline points="7 10 12 15 17 10"/>' +
               '<line x1="12" y1="15" x2="12" y2="3"/>' +
             '</svg>' +
-            'CSV Indir' +
+            'CSV İndir' +
           '</button>' +
         '</div>' +
       '</div>' +
@@ -1485,7 +1723,7 @@ function renderContent() {
   const loadingHtml =
     '<div class="loading">' +
       '<div class="spinner"></div>' +
-      '<p>Veri yukleniyor...</p>' +
+      '<p>Veri yükleniyor...</p>' +
     '</div>';
 
   const main = document.getElementById('main-content');
@@ -1504,7 +1742,7 @@ function renderContent() {
 
     main.innerHTML = headerHtml +
       '<div class="error-box">' +
-        '<strong>Dosya yuklenemedi</strong>' +
+        '<strong>Dosya yüklenemedi</strong>' +
         'Hata: ' + escHtml(err.message) + '<br>' +
         'Dosya yolu: <code>./seo-analiz/' + escHtml(doc.file) + '</code>' +
       '</div>';
