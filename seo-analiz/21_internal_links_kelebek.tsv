@@ -28,13 +28,13 @@ Sayfa URL	Internal Link Sayısı	Dofollow	Nofollow	Tür
 
 INTERNAL LINK ANALİZİ
 Sorun	Açıklama
-Sitewide vs Kategori Farkı	Sitewide sayfalar ~4530, kategori sayfaları ~2300 internal link alıyor. Kategori sayfaları 2x daha az link alıyor
+Sitewide vs Kategori Farkı	Sitewide sayfalar ~4530, kategori sayfaları ~2300 internal link alıyor. Kategori sayfalarıı 2x daha az link alıyor
 EN Sayfaların Etkisi	İngilizce sayfalar gereksiz yere ~2290 internal link alıyor. Bu link juice TR kategorilere yönlendirilmesi önerilir
-Eksik Kategori Sayfaları	Koltuk takımları, yatak odasi, yemek odasi gibi ana kategoriler listede yok - daha fazla internal link almalı
+Eksik Kategori Sayfaları	Koltuk takımları, yatak odası, yemek odası gibi ana kategoriler listede yok - daha fazla internal link almalı
 Online Özel Fazlalığı	7 farklı online-ozel sayfası sitewide'da linklenmiş - link juice dağılıyor
 
 OPTİMİZASYON ÖNERİLERİ
-1. Ana kategori sayfalarını (koltuk-takımları, yatak-odasi-takimi, yemek-odasi-takimi) footer ve sidebar'a eklenmesi önerilir
+1. Ana kategori sayfalarını (koltuk-takımları, yatak-odası-takımı, yemek-odası-takımı) footer ve sidebar'a eklenmesi önerilir
 2. EN sayfalara hreflang kullanın ama gereksiz internal linkleri azaltılması değerlendirilebilir
 3. Online-ozel sayfalarını tek bir hub sayfada toplanması önerilir
 4. Blog yazılarından kategori sayfalarına contextual internal link eklenmesi önerilir

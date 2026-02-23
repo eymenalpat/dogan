@@ -14,8 +14,8 @@ Berjer	/berjer	1049	110	/berjerler-ve-puflar	2985	496	-	-	-	Dogtas
 Sandalye	/sandalye-bench	2030	118	/sandalye-bank	1101	46	-	-	-	Kelebek
 Bahçe/Balkon	/bahce-seti	1724	96	/bahce-ve-balkon-oturma-takimi	2666	110	-	-	-	Dogtas
 Yatak	-	-	-	-	-	-	/yatak	2948	1275	Lovayatak
-Tek Kisilik Yatak	-	-	-	-	-	-	/tek-kisilik-yataklar	1355	52	Lovayatak
-Cift Kisilik Yatak	-	-	-	-	-	-	/cift-kisilik-yataklar	946	71	Lovayatak
+Tek Kişilik Yatak	-	-	-	-	-	-	/tek-kisilik-yataklar	1355	52	Lovayatak
+Çift Kişilik Yatak	-	-	-	-	-	-	/cift-kisilik-yataklar	946	71	Lovayatak
 Nevresim	-	-	-	-	-	-	/cift-kisilik-nevresim-takimi	1000	39	Lovayatak
 Baza	-	-	-	-	-	-	/cift-kisilik-bazalar	769	120	Lovayatak
 Battaniye	-	-	-	-	-	-	/battaniye	544	9	Lovayatak

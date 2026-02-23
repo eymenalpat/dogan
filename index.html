@@ -1430,9 +1430,13 @@ function renderStrategyFile(text) {
     const e = String(etki || '').trim();
     const map = {
       'Kritik': 'badge-kritik',
+      'Çok Yüksek': 'badge-cok-yuksek',
       'Cok Yuksek': 'badge-cok-yuksek',
+      'Yüksek': 'badge-yuksek',
       'Yuksek': 'badge-yuksek',
-      'Orta': 'badge-orta'
+      'Orta': 'badge-orta',
+      'Düşük': 'badge-orta',
+      'Dusuk': 'badge-orta'
     };
     const cls = map[e] || 'badge-orta';
     return e ? '<span class="badge ' + cls + '">' + escHtml(e) + '</span>' : '';
