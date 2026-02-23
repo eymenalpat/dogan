@@ -584,41 +584,6 @@
   .filter-reset-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid #E74C3C; background: #FDECEA; color: #C0392B; cursor: pointer; font-size: 11px; font-weight: 600; font-family: inherit; display: none; }
   .filter-reset-btn.show { display: inline-flex; }
 
-  /* EXPAND TOGGLE (referring domains) */
-  .expand-toggle {
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    border: none;
-    background: none;
-    font-size: 10px;
-    color: var(--text-secondary);
-    transition: all 0.15s;
-    margin-right: 6px;
-    flex-shrink: 0;
-  }
-  .expand-toggle:hover { background: #EEF4FF; color: #2471A3; }
-  .expand-toggle.open { transform: rotate(90deg); }
-  .slug-row { display: none; }
-  .slug-row.open { display: table-row; }
-  .slug-row td {
-    padding: 6px 16px 6px 48px !important;
-    background: #F8FAFC !important;
-    font-size: 12px;
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border);
-  }
-  .slug-url {
-    display: block;
-    font-family: monospace;
-    font-size: 11px;
-    color: #2471A3;
-    padding: 2px 0;
-  }
 
   /* Footer */
   footer {
@@ -911,12 +876,6 @@ function buildTable(headers, rows, filename) {
   const id = 'tbl_' + (++tableCounter);
   const colTypes = headers.map(h => detectColType(h));
 
-  // Detect if this is a referring_domains file
-  const isRefDomains = filename && filename.includes('referring_domains');
-
-  // Find "Top Sayfalar" column index if present
-  const topSayfalarIdx = headers.findIndex(h => /top\s*sayfa/i.test(h));
-
   const state = { sortCol: -1, sortDir: 1, filters: {} };
 
   // Determine which columns are filterable
@@ -1016,32 +975,11 @@ function buildTable(headers, rows, filename) {
     data.forEach((r, rowIdx) => {
       let cells = '';
       headers.forEach((h, ci) => {
-        // Skip the "Top Sayfalar" column from inline rendering (it's shown in slug-row)
-        if (isRefDomains && ci === topSayfalarIdx) return;
         const val = r[ci] !== undefined ? r[ci] : '';
         let rendered = renderCellAuto(val, colTypes[ci], h);
-        if (isRefDomains && ci === 0) {
-          // Add expand toggle to first column (domain name)
-          const slugRowId = 'slug_' + id + '_' + rowIdx;
-          rendered = '<button class="expand-toggle" data-slug-row="' + slugRowId + '">&#9654;</button>' + rendered;
-        }
         cells += '<td' + (ci === 0 ? ' style="font-weight:600"' : '') + '>' + rendered + '</td>';
       });
       tbody += '<tr>' + cells + '</tr>';
-
-      // Slug sub-row for referring domains
-      if (isRefDomains) {
-        const slugRowId = 'slug_' + id + '_' + rowIdx;
-        const colSpan = topSayfalarIdx >= 0 ? headers.length - 1 : headers.length;
-        let slugContent = '';
-        if (topSayfalarIdx >= 0 && r[topSayfalarIdx] && r[topSayfalarIdx].trim() && r[topSayfalarIdx].trim() !== '-') {
-          const urls = r[topSayfalarIdx].split('|').map(u => u.trim()).filter(Boolean);
-          slugContent = urls.map(u => '<span class="slug-url">' + escHtml(u) + '</span>').join('');
-        } else {
-          slugContent = '<span style="color:var(--text-secondary);font-style:italic">Veri mevcut değil</span>';
-        }
-        tbody += '<tr class="slug-row" id="' + slugRowId + '"><td colspan="' + colSpan + '">' + slugContent + '</td></tr>';
-      }
     });
 
     const countInfo = hasActiveFilters() ?
@@ -1065,7 +1003,6 @@ function buildTable(headers, rows, filename) {
     }
     attachSortListeners();
     attachResizeListeners();
-    attachExpandListeners();
   }
 
   function attachSortListeners() {
@@ -1118,28 +1055,6 @@ function buildTable(headers, rows, filename) {
 
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
-      });
-    });
-  }
-
-  function attachExpandListeners() {
-    if (!isRefDomains) return;
-    const wrap = document.getElementById('wrap_' + id);
-    if (!wrap) return;
-    wrap.querySelectorAll('.expand-toggle').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const slugRowId = btn.getAttribute('data-slug-row');
-        const slugRow = document.getElementById(slugRowId);
-        if (!slugRow) return;
-        const isOpen = slugRow.classList.contains('open');
-        if (isOpen) {
-          slugRow.classList.remove('open');
-          btn.classList.remove('open');
-        } else {
-          slugRow.classList.add('open');
-          btn.classList.add('open');
-        }
       });
     });
   }
@@ -1218,7 +1133,6 @@ function buildTable(headers, rows, filename) {
   setTimeout(() => {
     attachSortListeners();
     attachResizeListeners();
-    attachExpandListeners();
     attachFilterListeners();
   }, 0);
 
@@ -1508,12 +1422,24 @@ function renderStrategyFile(text) {
 
   if (commonItems.length > 0) {
     html += '<div class="strategy-section">';
-    html += '<div class="strategy-section-header" style="background:#34495E">Ortak Stratejiler</div>';
-    html += '<div class="strategy-common"><ul>';
-    commonItems.forEach(function(item) {
-      html += '<li>' + escHtml(item) + '</li>';
+    html += '<div class="strategy-section-header" style="background:#34495E">\uD83D\uDD17 Ortak Stratejiler (Üç Marka İçin)</div>';
+    html += '<div class="strategy-cards">';
+    commonItems.forEach(function(item, idx) {
+      // Parse "Alan - Strateji - Detay" format
+      var parts = item.split(' - ');
+      var alan = parts[0] || '';
+      var strateji = parts[1] || '';
+      var detay = parts.length > 2 ? parts.slice(2).join(' - ') : '';
+      html += '<div class="strategy-card">';
+      html += '<div class="strategy-card-top">';
+      html += '<div class="strategy-card-num" style="background:#34495E">' + (idx + 1) + '</div>';
+      html += '<h4>' + escHtml(strateji || alan) + '</h4>';
+      if (alan && strateji) html += '<span class="badge badge-genel">' + escHtml(alan) + '</span>';
+      html += '</div>';
+      if (detay) html += '<p>' + escHtml(detay) + '</p>';
+      html += '</div>';
     });
-    html += '</ul></div></div>';
+    html += '</div></div>';
   }
 
   html += '</div>';
